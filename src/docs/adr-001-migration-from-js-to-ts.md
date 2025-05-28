@@ -19,6 +19,11 @@ We will use Typescript as the primary language for all new features, and will gr
 - *Easier Onboarding*: New team members can understand the codebase more quickly by relying on type definitions, it can be used as a documentation.
 - *Scalability*: Typescript features make it easier to scale applications, as the code is more organized and maintainable.
 
+## Rejected Alternatives
+- *Continuing with JavaScript*: Its dynamic typing leads to runtime errors, difficult refactoring, and higher long-term maintenance costs compared to TypeScript compile-time safety and improved tooling.
+- *Using JSDoc*: Primarily a documentation tool, JSDoc lacks TypeScript comprehensive type inference, advanced type features, and strict compile-time guarantees, leaving many potential errors undetected.
+- *Using Flow*: It has a significantly smaller community, less extensive ecosystem support, and less mature tooling compared to TypeScript, making TypeScript a more sustainable choice.
+
 ## Status
 Proposed
 
