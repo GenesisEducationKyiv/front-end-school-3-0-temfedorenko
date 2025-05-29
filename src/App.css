@@ -1,0 +1,9 @@
+#root {
+  padding: 2rem;
+  display: flex;
+  margin: 0 auto;
+  max-width: 1720px;
+  overflow-x: hidden;
+  flex-direction: column;
+  min-height: calc(100vh - 65px);
+}
