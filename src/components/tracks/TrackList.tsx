@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   Table,
@@ -12,10 +11,10 @@ import {
   CircularProgress,
 } from '@mui/material';
 
-import { TrackItem } from './TrackItem';
-import { TrackModals } from './TrackModals';
-import { useTrackData } from '../../hooks/useTrackData';
-import { getErrorMessage } from '../../helpers/index.jsx';
+import { TrackItem } from './TrackItem.jsx';
+import { TrackModals } from './TrackModals.tsx';
+import { getErrorMessage } from '../../helpers/index.js';
+import { useTrackData } from '../../hooks/useTrackData.ts';
 ///////////////////////////////////////////////////////
 
 const headerCellStyles = {

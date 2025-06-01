@@ -1,9 +1,11 @@
+import { useState, useEffect } from 'react';
 import { Box, IconButton } from '@mui/material';
 import WavesurferPlayer from '@wavesurfer/react';
-import React, { useState, useEffect } from 'react';
 import { PlayArrow, PauseCircle } from '@mui/icons-material';
 
 import { useStore } from '../../store';
+
+import type WaveSurfer from 'wavesurfer.js';
 ///////////////////////////////////////////////////////
 
 const wrapperStyles = {
@@ -16,9 +18,9 @@ const wrapperStyles = {
 
 const playerWrapperStyles = { width: '100%', cursor: 'pointer' };
 
-export function Audio({ id, url }) {
+export function Audio({ id, url }: { id: string; url: string }) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [wavesurfer, setWavesurfer] = useState(null);
+  const [wavesurfer, setWavesurfer] = useState<WaveSurfer | null>(null);
 
   const { playingTrackId, setPlayingTrackId } = useStore();
 
@@ -28,7 +30,7 @@ export function Audio({ id, url }) {
     };
   }, [playingTrackId, setPlayingTrackId]);
 
-  const onReady = ws => {
+  const onReady = (ws: WaveSurfer) => {
     setWavesurfer(ws);
     setIsPlaying(false);
   };
@@ -47,7 +49,7 @@ export function Audio({ id, url }) {
     setPlayingTrackId(null);
   };
 
-  const isBtnDisabled = playingTrackId && playingTrackId !== id;
+  const isBtnDisabled = !!playingTrackId && playingTrackId !== id;
 
   return (
     <Box sx={wrapperStyles} data-testid={`audio-player-${id}`}>

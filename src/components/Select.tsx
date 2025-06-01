@@ -1,14 +1,30 @@
-import React from 'react';
-import { Box, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
+import {
+  Box,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+  type SelectChangeEvent,
+} from '@mui/material';
 ///////////////////////////////////////////////////////
 
-export function SelectComponent({ id, value, label, dataTestId, styles = {}, options = [], handleChange }) {
+interface IProps {
+  id: string;
+  label: string;
+  dataTestId: string;
+  value: string;
+  styles?: object | undefined;
+  options: { label: string; value: string | undefined }[];
+  handleChange: (event: SelectChangeEvent<string>) => void;
+}
+
+export function SelectComponent({ id, value, label, dataTestId, styles = {}, options = [], handleChange }: IProps) {
   const labelId = `${id}-label`;
 
   return (
     <Box>
       <FormControl fullWidth={true}>
-        <InputLabel color='#C8C8C8' id={labelId}>{label}</InputLabel>
+        <InputLabel id={labelId} style={{ color: '#828282' }}>{label}</InputLabel>
         <Select
           id={id}
           sx={styles}

@@ -1,39 +1,42 @@
-import { api } from './';
+import { api } from '.';
+
+import type { QueryFunctionContext } from '@tanstack/react-query';
+import type { ITrack, ITracksQuery, ITrackPayload, ITracksResponse } from '../types/track.types';
 ///////////////////////////////////////////////////////
 
-const getGenresRequest = async () => {
+const getGenresRequest = async (): Promise<string[]> => {
   const response = await api.get('/genres');
 
   return response.data;
 };
 
-const getTracksRequest = async ({ queryKey }) => {
-  const [_key, params] = queryKey;
+const getTracksRequest = async ({ queryKey }: QueryFunctionContext): Promise<ITracksResponse> => {
+  const [, params] = queryKey as ['tracks', ITracksQuery];
 
   const response = await api.get('/tracks', { params });
   
   return response.data;
 };
 
-const createTrackRequest = async (trackData) => {
+const createTrackRequest = async (trackData: ITrackPayload): Promise<ITrack> => {
   const response = await api.post('/tracks', trackData);
 
   return response.data;
 };
 
-const updateTrackRequest = async ({ id, ...data }) => {
+const updateTrackRequest = async ({ id, ...data }: ITrackPayload): Promise<ITrack> => {
   const response = await api.put(`/tracks/${id}`, data);
 
   return response.data;
 };
 
-const deleteTrackRequest = async (id) => {
+const deleteTrackRequest = async (id: string) => {
   const response = await api.delete(`/tracks/${id}`);
 
   return response.data;
 };
 
-const uploadTrackFileRequest = async ({ id, data }) => {
+const uploadTrackFileRequest = async ({ id, data }: { id: string, data: FormData }) => {
   const response = await api.post(
     `/tracks/${id}/upload`,
     data,
@@ -45,7 +48,7 @@ const uploadTrackFileRequest = async ({ id, data }) => {
   return response.data;
 };
 
-const deleteTrackFileRequest = async (id) => {
+const deleteTrackFileRequest = async (id: string) => {
   const response = await api.delete(`/tracks/${id}/file`);
 
   return response.data;

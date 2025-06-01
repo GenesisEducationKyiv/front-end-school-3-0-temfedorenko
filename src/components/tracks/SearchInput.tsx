@@ -1,9 +1,8 @@
-import { Box } from '@mui/material';
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
-import { useStore } from '../../store';
-import { setDebounce } from '../../helpers/index.jsx';
-import { TextFieldComponent } from '../TextInput';
+import { useStore } from '../../store/index.js';
+import { setDebounce } from '../../helpers/index.js';
+import { TextFieldComponent } from '../TextInput.js';
 // //////////////////////////////////////////////////
 
 export function SearchInput() {
@@ -12,11 +11,11 @@ export function SearchInput() {
   const [inputValue, setInputValue] = useState(searchQuery || '');
 
   const debouncedSetSearchQuery = useMemo(
-    () => setDebounce((value) => setSearchQuery(value), 800),
+    () => setDebounce((value: string) => setSearchQuery(value), 800),
     [setSearchQuery],
   );
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
 
     setInputValue(newValue);

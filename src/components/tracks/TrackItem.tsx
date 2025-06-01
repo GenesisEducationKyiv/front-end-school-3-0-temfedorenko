@@ -1,14 +1,15 @@
-import React from 'react';
 import { Box, TableCell, TableRow, IconButton } from '@mui/material';
 import { Edit, Delete, AudioFile, HighlightOff } from '@mui/icons-material';
 
-import { Audio } from './audio';
+import { Audio } from './Audio';
 import { useStore } from '../../store';
 import defaultCoverImage from '../../assets/images/cover-image.jpg';
 import { EDIT_TRACK, API_BASE_URL, DELETE_TRACK, UPLOAD_TRACK_FILE, DELETE_TRACK_FILE } from '../../constants';
+
+import type { ITrack } from '../../types/track.types';
 ///////////////////////////////////////////////////////
 
-export function TrackItem({ track }) {
+export function TrackItem({ track }: { track: ITrack }) {
   const { id, title, artist, album, genres, audioFile, coverImage } = track;
 
   const { openTrackModal } = useStore();
@@ -27,7 +28,7 @@ export function TrackItem({ track }) {
               component='img'
               sx={{ objectFit: 'contain' }}
               src={coverImage || defaultCoverImage}
-              onError={({ currentTarget }) => {
+              onError={({ currentTarget }: { currentTarget: HTMLImageElement }) => {
                 if (currentTarget.src !== defaultCoverImage) {
                   currentTarget.src = defaultCoverImage;
                 }

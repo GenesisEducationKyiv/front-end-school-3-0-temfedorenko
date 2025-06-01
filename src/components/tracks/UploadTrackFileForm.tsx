@@ -1,4 +1,3 @@
-import React from 'react';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { MuiFileInput } from 'mui-file-input';
@@ -17,34 +16,36 @@ import {
   CircularProgress,
 } from '@mui/material';
 
-import { useStore } from '../../store';
-import { FIELD_AUDIO_FILE } from '../../constants';
-import { uploadTrackFileRequest } from '../../api/tracks';
-import { showToast, getErrorMessage } from '../../helpers/index.jsx';
+import { useStore } from '../../store/index.js';
+import { FIELD_AUDIO_FILE } from '../../constants/index.js';
+import { uploadTrackFileRequest } from '../../api/tracks.js';
+import { showToast, getErrorMessage } from '../../helpers/index.js';
 ///////////////////////////////////////////////////////
 
 const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024; // 10MB
 const ALLOWED_FILE_TYPES = ['audio/mpeg', 'audio/ogg', 'audio/wav', 'audio/mp3'];
 
+const isFile = (value: unknown): value is File => value instanceof File;
+
 const validationSchema = yup.object().shape({
-  [FIELD_AUDIO_FILE]: yup.mixed()
+  [FIELD_AUDIO_FILE]: yup.mixed<File>()
     .required('Please select a file')
     .test(
       'fileType',
       'Should be .mp3, .ogg or .wav',
       (value) => {
-        if (!value) return true;
+        if (isFile(value)) return ALLOWED_FILE_TYPES.includes(value.type);
 
-        return ALLOWED_FILE_TYPES.includes(value.type);
+        return true;
       }
     )
     .test(
       'fileSize',
       `Max file size is ${MAX_FILE_SIZE_BYTES / (1024 * 1024)}MB`,
       (value) => {
-        if (!value) return true;
+        if (isFile(value)) return value.size <= MAX_FILE_SIZE_BYTES;
 
-        return value.size <= MAX_FILE_SIZE_BYTES;
+        return true;
       }
     ),
 });
@@ -56,7 +57,7 @@ const inputStyles = {
   },
 };
 
-export function UploadTrackFileForm({ handleClose }) {
+export function UploadTrackFileForm({ handleClose }: { handleClose: () => void }) {
   const { selectedTrack } = useStore();
 
   const queryClient = useQueryClient();
@@ -74,16 +75,18 @@ export function UploadTrackFileForm({ handleClose }) {
   const { handleBlur, handleSubmit, setFieldValue, values, errors, touched } = useFormik({
     validationSchema: validationSchema,
     initialValues: { [FIELD_AUDIO_FILE]: null },
-    onSubmit: async (values) => {
+    onSubmit: ({ audioFile }: { [FIELD_AUDIO_FILE]: File | null }) => {
       const formData = new FormData();
 
-      formData.append(FIELD_AUDIO_FILE, values[FIELD_AUDIO_FILE]);
-      
-      await uploadTrack({ data: formData, id: selectedTrack?.id });
+      if (audioFile) {
+        formData.append(FIELD_AUDIO_FILE, audioFile);
+      }
+
+      uploadTrack({ data: formData, id: selectedTrack?.id });
     },
   });
 
-  const handleFileChange = (value) => {
+  const handleFileChange = (value: File | null) => {
     setFieldValue(FIELD_AUDIO_FILE, value);
   };
 
@@ -92,7 +95,7 @@ export function UploadTrackFileForm({ handleClose }) {
       <FormControl error={touched.audioFile && !!errors.audioFile}>
         {
           !values.audioFile &&
-          <InputLabel error={errors.audioFile} htmlFor={FIELD_AUDIO_FILE}>
+          <InputLabel error={!!errors.audioFile} htmlFor={FIELD_AUDIO_FILE}>
             <Box display='flex' gap='10px' alignItems='center'>
               <AttachFile />
               <Typography>Attach an Audio File</Typography>
@@ -100,15 +103,15 @@ export function UploadTrackFileForm({ handleClose }) {
           </InputLabel>
         }
         <MuiFileInput
-          value={values.audioFile}
           sx={inputStyles}
+          value={values.audioFile}
+          onChange={handleFileChange}
           inputProps={{
+            onBlur: handleBlur,
             id: FIELD_AUDIO_FILE,
             name: FIELD_AUDIO_FILE,
-            onBlur: handleBlur,
             accept: ALLOWED_FILE_TYPES.join(','),
           }}
-          onChange={handleFileChange}
         />
         {touched.audioFile && errors.audioFile && (
           <FormHelperText>{errors.audioFile}</FormHelperText>

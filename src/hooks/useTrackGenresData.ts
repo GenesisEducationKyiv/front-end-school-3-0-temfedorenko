@@ -4,7 +4,7 @@ import { getGenresRequest } from '../api/tracks';
 ///////////////////////////////////////////////////////
 
 export const useTrackGenresData = () => {
-  const { data: genres, isLoading: isGenresLoading, isError: isGenresError, error: genresError } = useQuery({
+  const { data: genres, isLoading: isGenresLoading, isError: isGenresError, error: genresError } = useQuery<string[]>({
     queryKey: ['genres'],
     queryFn: getGenresRequest,
   });
