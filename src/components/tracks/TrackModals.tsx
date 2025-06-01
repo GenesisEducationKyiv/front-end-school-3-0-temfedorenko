@@ -1,11 +1,11 @@
 import { DialogContentText } from '@mui/material';
 
-import { TrackForm } from './TrackForm.jsx';
-import { ModalComponent } from '../Modal.tsx';
-import { useStore } from '../../store/index.js';
-import { UploadTrackFileForm } from './UploadTrackFileForm.jsx';
-import { useDeleteActions } from '../../hooks/useDeleteActions.js';
-import { EDIT_TRACK, DELETE_TRACK, UPLOAD_TRACK_FILE, DELETE_TRACK_FILE } from '../../constants/index.ts';
+import { TrackForm } from './TrackForm';
+import { ModalComponent } from '../Modal';
+import { useStore } from '../../store/index';
+import { UploadTrackFileForm } from './UploadTrackFileForm';
+import { useDeleteActions } from '../../hooks/useDeleteActions';
+import { EDIT_TRACK, DELETE_TRACK, UPLOAD_TRACK_FILE, DELETE_TRACK_FILE } from '../../constants/index';
 ///////////////////////////////////////////////////////
 
 export function TrackModals() {

@@ -5,7 +5,6 @@ import './App.css';
 
 import { TracksPage } from './features/tracks';
 import { AppHeader } from './components/AppHeader';
-
 ///////////////////////////////////////////////////////
 
 function App() {

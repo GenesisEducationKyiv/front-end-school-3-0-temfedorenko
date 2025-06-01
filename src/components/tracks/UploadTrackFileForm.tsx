@@ -16,10 +16,10 @@ import {
   CircularProgress,
 } from '@mui/material';
 
-import { useStore } from '../../store/index.js';
-import { FIELD_AUDIO_FILE } from '../../constants/index.js';
-import { uploadTrackFileRequest } from '../../api/tracks.js';
-import { showToast, getErrorMessage } from '../../helpers/index.js';
+import { useStore } from '../../store/index';
+import { FIELD_AUDIO_FILE } from '../../constants/index';
+import { uploadTrackFileRequest } from '../../api/tracks';
+import { showToast, getErrorMessage } from '../../helpers/index';
 ///////////////////////////////////////////////////////
 
 const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024; // 10MB

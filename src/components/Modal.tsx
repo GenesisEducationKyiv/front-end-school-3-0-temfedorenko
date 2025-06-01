@@ -11,7 +11,7 @@ import {
   CircularProgress,
 } from '@mui/material';
 
-import { getErrorMessage } from '../helpers/index.js';
+import { getErrorMessage } from '../helpers/index';
 
 import type { JSX } from '@emotion/react/jsx-runtime';
 ///////////////////////////////////////////////////////

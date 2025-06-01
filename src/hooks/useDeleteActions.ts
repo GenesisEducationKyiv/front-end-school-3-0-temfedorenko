@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { useStore } from '../store/index.js';
-import { showToast } from '../helpers/index.jsx';
-import { deleteTrackRequest, deleteTrackFileRequest } from '../api/tracks.js';
+import { useStore } from '../store/index';
+import { showToast } from '../helpers/index';
+import { deleteTrackRequest, deleteTrackFileRequest } from '../api/tracks';
 ///////////////////////////////////////////////////////
 
 export const useDeleteActions = () => {

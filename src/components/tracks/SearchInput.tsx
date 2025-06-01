@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 
-import { useStore } from '../../store/index.js';
-import { setDebounce } from '../../helpers/index.js';
-import { TextFieldComponent } from '../TextInput.js';
+import { useStore } from '../../store/index';
+import { setDebounce } from '../../helpers/index';
+import { TextFieldComponent } from '../TextInput';
 // //////////////////////////////////////////////////
 
 export function SearchInput() {

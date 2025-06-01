@@ -12,11 +12,11 @@ import {
   CircularProgress,
 } from '@mui/material';
 
-import { useStore } from '../../store/index.ts';
-import { showToast, getErrorMessage } from '../../helpers/index.js';
-import { useTrackGenresData } from '../../hooks/useTrackGenresData.ts';
-import { createTrackRequest, updateTrackRequest } from '../../api/tracks.ts';
-import { FIELD_ALBUM, FIELD_GENRES, FIELD_TITLE, FIELD_ARTIST, FIELD_COVER_IMAGE } from '../../constants/index.ts';
+import { useStore } from '../../store/index';
+import { showToast, getErrorMessage } from '../../helpers/index';
+import { useTrackGenresData } from '../../hooks/useTrackGenresData';
+import { createTrackRequest, updateTrackRequest } from '../../api/tracks';
+import { FIELD_ALBUM, FIELD_GENRES, FIELD_TITLE, FIELD_ARTIST, FIELD_COVER_IMAGE } from '../../constants/index';
 //////////////////////////////////////////////////
 
 const validationSchema = yup.object().shape({

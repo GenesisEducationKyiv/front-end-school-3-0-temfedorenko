@@ -1,6 +1,6 @@
-import { useStore } from '../../store/index.ts';
-import { SelectComponent } from '../Select.tsx';
-import { useTrackGenresData } from '../../hooks/useTrackGenresData.ts';
+import { SelectComponent } from '../Select';
+import { useStore } from '../../store/index';
+import { useTrackGenresData } from '../../hooks/useTrackGenresData';
 
 import type { SelectChangeEvent } from '@mui/material';
 //////////////////////////////////////////////////
