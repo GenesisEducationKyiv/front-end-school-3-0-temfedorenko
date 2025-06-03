@@ -31,7 +31,7 @@ const createTrackRequest = async (trackData: ICreateTrackPayload): Promise<ITrac
 };
 
 const updateTrackRequest = async ({ id, ...data }: IUpdateTrackPayload): Promise<ITrack> => {
-  const response = await api.put(`/tracksk/${id}`, data);
+  const response = await api.put(`/tracks/${id}`, data);
 
   return response.data;
 };
