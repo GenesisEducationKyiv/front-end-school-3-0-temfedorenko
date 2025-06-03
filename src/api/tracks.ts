@@ -1,7 +1,13 @@
 import { api } from '.';
 
 import type { QueryFunctionContext } from '@tanstack/react-query';
-import type { ITrack, ITracksQuery, ITrackPayload, ITracksResponse } from '../types/track.types';
+import type {
+  ITrack,
+  ITracksQuery,
+  ITracksResponse,
+  ICreateTrackPayload,
+  IUpdateTrackPayload,
+} from '../types/track.types';
 ///////////////////////////////////////////////////////
 
 const getGenresRequest = async (): Promise<string[]> => {
@@ -18,14 +24,14 @@ const getTracksRequest = async ({ queryKey }: QueryFunctionContext): Promise<ITr
   return response.data;
 };
 
-const createTrackRequest = async (trackData: ITrackPayload): Promise<ITrack> => {
+const createTrackRequest = async (trackData: ICreateTrackPayload): Promise<ITrack> => {
   const response = await api.post('/tracks', trackData);
 
   return response.data;
 };
 
-const updateTrackRequest = async ({ id, ...data }: ITrackPayload): Promise<ITrack> => {
-  const response = await api.put(`/tracks/${id}`, data);
+const updateTrackRequest = async ({ id, ...data }: IUpdateTrackPayload): Promise<ITrack> => {
+  const response = await api.put(`/tracksk/${id}`, data);
 
   return response.data;
 };

@@ -48,12 +48,8 @@ interface IFormValues {
   artist: string;
   audioFile?: string;
   coverImage?: string;
-  createdAt?: string;
   genres: string[];
-  id?: string;
-  slug?: string;
   title: string;
-  updatedAt?: string;
 }
 
 const fields = [
@@ -119,8 +115,8 @@ export function TrackForm({ isCreate = false, handleClose }: { isCreate?: boolea
   const { handleBlur, handleSubmit, handleChange, values, errors, touched, setFieldValue } = useFormik({
     validationSchema,
     initialValues: isCreate ? defaultValues : { ...defaultValues, ...selectedTrack },
-    onSubmit: ({ id, title, artist, album, genres, coverImage }: IFormValues) =>
-      createOrUpdateTrack({ id, title, artist, album, genres, coverImage }),
+    onSubmit: ({ title, artist, album, genres, coverImage }: IFormValues) =>
+      createOrUpdateTrack({ title, artist, album, genres, coverImage, id: selectedTrack.id }),
   });
 
   const handleClickSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {

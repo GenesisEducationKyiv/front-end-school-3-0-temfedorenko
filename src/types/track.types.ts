@@ -16,14 +16,16 @@ export interface ITrack {
   updatedAt: string;
 }
 
-export interface ITrackPayload {
+export interface ICreateTrackPayload {
   album?: string;
   artist: string;
-  audioFile?: string;
   coverImage?: string;
   genres: string[];
-  id?: string;
   title: string;
+}
+
+export interface IUpdateTrackPayload extends ICreateTrackPayload {
+  id: string;
 }
 
 export interface ITracksResponse {

@@ -11,7 +11,7 @@ export const TRACK_MODAL_TYPES = {
   [DELETE_TRACK]: DELETE_TRACK,
   [UPLOAD_TRACK_FILE]: UPLOAD_TRACK_FILE,
   [DELETE_TRACK_FILE]: DELETE_TRACK_FILE,
-};
+} as const;
 
 // fields
 export const FIELD_TITLE = 'title';
@@ -34,4 +34,4 @@ export const TRACK_SORT_OPTIONS_MAP = {
   'album-desc': { sort: 'album', order: 'desc' },
   'createdAt-asc': { sort: 'createdAt', order: 'asc' },
   'createdAt-desc': { sort: 'createdAt', order: 'desc' },
-};
+} as const;
