@@ -1,8 +1,7 @@
-import React from 'react';
 import * as yup from 'yup';
 import { Add } from '@mui/icons-material';
-import { getIn, useFormik } from 'formik';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { getIn, useFormik, type FormikErrors, type FormikTouched } from 'formik';
 import {
   Stack,
   Alert,
@@ -13,11 +12,11 @@ import {
   CircularProgress,
 } from '@mui/material';
 
-import { useStore } from '../../store';
+import { useStore } from '../../store/index';
+import { showToast, getErrorMessage } from '../../helpers/index';
 import { useTrackGenresData } from '../../hooks/useTrackGenresData';
-import { showToast, getErrorMessage } from '../../helpers/index.jsx';
 import { createTrackRequest, updateTrackRequest } from '../../api/tracks';
-import { FIELD_ALBUM, FIELD_GENRES, FIELD_TITLE, FIELD_ARTIST, FIELD_COVER_IMAGE } from '../../constants';
+import { FIELD_ALBUM, FIELD_GENRES, FIELD_TITLE, FIELD_ARTIST, FIELD_COVER_IMAGE, TRACKS_QUERY_KEY } from '../../constants/index';
 //////////////////////////////////////////////////
 
 const validationSchema = yup.object().shape({
@@ -43,6 +42,15 @@ const defaultValues = {
   [FIELD_GENRES]: [],
   [FIELD_COVER_IMAGE]: '',
 };
+
+interface IFormValues {
+  album?: string;
+  artist: string;
+  audioFile?: string;
+  coverImage?: string;
+  genres: string[];
+  title: string;
+}
 
 const fields = [
   {
@@ -75,29 +83,29 @@ const fields = [
   },
 ];
 
-const getFieldError = (name, errors, touched) => {
+const getFieldError = (name: string, errors: FormikErrors<IFormValues>, touched: FormikTouched<IFormValues>) => {
   const error = getIn(errors, name);
   const touch = getIn(touched, name);
 
-  return touch && error && errors[name];
+  return touch && typeof error === 'string' ? error : undefined;
 };
 
-const getTextInputStyles = (height) => ({
+const getTextInputStyles = (height?: number) => ({
   height,
   '& .MuiOutlinedInput-root': { height },
 });
 
-export function TrackForm({ isCreate = false, handleClose }) {
+export function TrackForm({ isCreate = false, handleClose }: { isCreate?: boolean; handleClose: () => void }) {
   const queryClient = useQueryClient();
 
   const { selectedTrack } = useStore();
 
-  const { genres, genresError, isGenresError, isGenresLoading } = useTrackGenresData();
+  const { genres = [], genresError, isGenresError, isGenresLoading } = useTrackGenresData();
 
-  const { mutate: createNewTrack, isPending: isCreating, isError: isCreateError, error: createError } = useMutation({
+  const { mutate: createOrUpdateTrack, isPending: isCreating, isError: isCreateError, error: createError } = useMutation({
     mutationFn: isCreate ? createTrackRequest : updateTrackRequest,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['tracks'] });
+      queryClient.invalidateQueries({ queryKey: [TRACKS_QUERY_KEY] });
 
       handleClose();
       showToast(isCreate ? 'Track created successfully' : 'Track updated successfully');
@@ -106,9 +114,16 @@ export function TrackForm({ isCreate = false, handleClose }) {
 
   const { handleBlur, handleSubmit, handleChange, values, errors, touched, setFieldValue } = useFormik({
     validationSchema,
-    onSubmit: async (values) => await createNewTrack(values),
     initialValues: isCreate ? defaultValues : { ...defaultValues, ...selectedTrack },
+    onSubmit: ({ title, artist, album, genres, coverImage }: IFormValues) =>
+      createOrUpdateTrack({ title, artist, album, genres, coverImage, id: selectedTrack.id }),
   });
+
+  const handleClickSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    handleSubmit();
+  };
 
   if (isGenresLoading) return <CircularProgress color='inherit' />;
 
@@ -120,7 +135,7 @@ export function TrackForm({ isCreate = false, handleClose }) {
         fields.map((field) => {
           const { name, label, testId, required } = field;
 
-          const value = values[name];
+          const value = getIn(values, name);
           const error = getFieldError(name, errors, touched);
 
           const inputLabel = { style: { color: '#4D4D4D' } };
@@ -130,7 +145,6 @@ export function TrackForm({ isCreate = false, handleClose }) {
               <Autocomplete
                 id={name}
                 key={name}
-                name={name}
                 value={value}
                 multiple={true}
                 options={genres}
@@ -138,18 +152,19 @@ export function TrackForm({ isCreate = false, handleClose }) {
                 onBlur={handleBlur}
                 popupIcon={<Add />}
                 filterSelectedOptions={true}
-                onChange={(e, newValue) => setFieldValue(name, newValue)}
+                onChange={(_, newValue) => setFieldValue(name, newValue)}
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    error={error}
+                    name={name}
                     label={label}
+                    error={!!error}
                     variant='standard'
                     helperText={error}
                     required={required}
                     sx={getTextInputStyles()}
                     slotProps={{ inputLabel }}
-                    FormHelperTextProps={{ 'data-testid': 'error-genre' }}
+                    FormHelperTextProps={{ 'data-testid': 'error-genre' } as React.HTMLAttributes<HTMLDivElement>}
                     inputProps={{
                       ...params.inputProps,
                       'data-testid': testId,
@@ -172,14 +187,14 @@ export function TrackForm({ isCreate = false, handleClose }) {
             <TextField
               key={name}
               label={label}
-              error={error}
+              error={!!error}
               fullWidth={true}
               helperText={error}
               required={required}
               sx={getTextInputStyles(56)}
               inputProps={{ 'data-testid': testId }}
               slotProps={{ inputLabel, input: inputProps }}
-              FormHelperTextProps={{ 'data-testid': `error-${name}` }}
+              FormHelperTextProps={{ 'data-testid': `error-${name}` } as React.HTMLAttributes<HTMLDivElement>}
             />
           );
         })
@@ -190,10 +205,10 @@ export function TrackForm({ isCreate = false, handleClose }) {
         <Button
           type='submit'
           disabled={isCreating}
-          onClick={handleSubmit}
           data-loading={isCreating}
           data-disabled={isCreating}
           data-testid='submit-button'
+          onClick={handleClickSubmit}
         >
           {isCreating ? <CircularProgress size={18} /> : 'Save'}
         </Button>

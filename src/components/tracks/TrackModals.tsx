@@ -1,12 +1,11 @@
-import React from 'react';
 import { DialogContentText } from '@mui/material';
 
-import { TrackForm } from './TrackForm.jsx';
-import { ModalComponent } from '../Modal.jsx';
-import { useStore } from '../../store/index.js';
-import { UploadTrackFileForm } from './UploadTrackFileForm.jsx';
-import { useDeleteActions } from '../../hooks/useDeleteActions.js';
-import { EDIT_TRACK, DELETE_TRACK, UPLOAD_TRACK_FILE, DELETE_TRACK_FILE } from '../../constants/index.js';
+import { TrackForm } from './TrackForm';
+import { ModalComponent } from '../Modal';
+import { useStore } from '../../store/index';
+import { UploadTrackFileForm } from './UploadTrackFileForm';
+import { useDeleteActions } from '../../hooks/useDeleteActions';
+import { EDIT_TRACK, DELETE_TRACK, UPLOAD_TRACK_FILE, DELETE_TRACK_FILE } from '../../constants/index';
 ///////////////////////////////////////////////////////
 
 export function TrackModals() {
@@ -60,7 +59,9 @@ export function TrackModals() {
     },
   };
 
-  const currentModalConfig = modalConfig[trackModal];
+  if (!trackModal || !(trackModal in modalConfig)) return null;
+
+  const currentModalConfig = modalConfig[trackModal as keyof typeof modalConfig];
 
   if (!currentModalConfig) return null;
 

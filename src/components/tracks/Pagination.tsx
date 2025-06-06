@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Pagination, PaginationItem } from '@mui/material';
 
 import { useStore } from '../../store';
@@ -9,7 +8,7 @@ export function PaginationComponent() {
 
   if (!totalPages) return null;
 
-  const handleChange = (_, value) => setCurrentPage(value);
+  const handleChange = (_: React.ChangeEvent<unknown>, value: number) => setCurrentPage(value);
 
   return (
     <Box mt='30px' display='flex' justifyContent='center'>

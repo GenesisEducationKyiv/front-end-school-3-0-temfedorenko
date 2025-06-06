@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   Table,
@@ -14,8 +13,8 @@ import {
 
 import { TrackItem } from './TrackItem';
 import { TrackModals } from './TrackModals';
+import { getErrorMessage } from '../../helpers/index';
 import { useTrackData } from '../../hooks/useTrackData';
-import { getErrorMessage } from '../../helpers/index.jsx';
 ///////////////////////////////////////////////////////
 
 const headerCellStyles = {
