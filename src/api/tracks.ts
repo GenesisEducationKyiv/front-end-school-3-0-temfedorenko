@@ -1,42 +1,50 @@
+import z from 'zod';
+
 import { api } from '.';
 
 import { endpoints } from './endpoints';
 import { TRACKS_QUERY_KEY } from '../constants';
+import { saveParseWithError } from '../helpers/zod';
+import {
+  trackSchema,
+  genresSchema,
+  tracksResponseSchema,
+  uploadTrackFileSchema,
+  deleteTrackFileSchema,
+} from '../schemas';
 
 import type { QueryFunctionContext } from '@tanstack/react-query';
 import type {
-  ITrack,
   ITracksQuery,
-  ITracksResponse,
   ICreateTrackPayload,
   IUpdateTrackPayload,
 } from '../types/track.types';
 ///////////////////////////////////////////////////////
 
-const getGenresRequest = async (): Promise<string[]> => {
+const getGenresRequest = async (): Promise<z.infer<typeof genresSchema>> => {
   const response = await api.get(endpoints.genres);
 
-  return response.data;
+ return saveParseWithError(genresSchema, response.data, 'Genres validation error');
 };
 
-const getTracksRequest = async ({ queryKey }: QueryFunctionContext): Promise<ITracksResponse> => {
+const getTracksRequest = async ({ queryKey }: QueryFunctionContext): Promise<z.infer<typeof tracksResponseSchema>> => {
   const [, params] = queryKey as [typeof TRACKS_QUERY_KEY, ITracksQuery];
 
   const response = await api.get(endpoints.tracks, { params });
-  
-  return response.data;
+
+  return saveParseWithError(tracksResponseSchema, response.data, 'Tracks validation error');
 };
 
-const createTrackRequest = async (trackData: ICreateTrackPayload): Promise<ITrack> => {
+const createTrackRequest = async (trackData: ICreateTrackPayload): Promise<z.infer<typeof trackSchema>> => {
   const response = await api.post(endpoints.tracks, trackData);
 
-  return response.data;
+  return saveParseWithError(trackSchema, response.data, 'Create Track validation error');
 };
 
-const updateTrackRequest = async ({ id, ...data }: IUpdateTrackPayload): Promise<ITrack> => {
+const updateTrackRequest = async ({ id, ...data }: IUpdateTrackPayload): Promise<z.infer<typeof trackSchema>> => {
   const response = await api.put(endpoints.getTracksEndpointById(id), data);
 
-  return response.data;
+  return saveParseWithError(trackSchema, response.data, 'Update Track validation error');
 };
 
 const deleteTrackRequest = async (id: string) => {
@@ -45,7 +53,7 @@ const deleteTrackRequest = async (id: string) => {
   return response.data;
 };
 
-const uploadTrackFileRequest = async ({ id, data }: { id: string, data: FormData }) => {
+const uploadTrackFileRequest = async ({ id, data }: { id: string, data: FormData }): Promise<z.infer<typeof uploadTrackFileSchema>> => {
   const response = await api.post(
     endpoints.getTracksUploadEndpointById(id),
     data,
@@ -54,13 +62,13 @@ const uploadTrackFileRequest = async ({ id, data }: { id: string, data: FormData
     }
   );
 
-  return response.data;
+  return saveParseWithError(uploadTrackFileSchema, response.data, 'Upload Track File validation error');
 };
 
-const deleteTrackFileRequest = async (id: string) => {
+const deleteTrackFileRequest = async (id: string): Promise<z.infer<typeof deleteTrackFileSchema>> => {
   const response = await api.delete(endpoints.getTracksFileEndpointById(id));
 
-  return response.data;
+  return saveParseWithError(deleteTrackFileSchema, response.data, 'Delete Track File validation error');
 };
 
 export {

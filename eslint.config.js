@@ -1,8 +1,9 @@
 import js from '@eslint/js';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import pluginZod from "eslint-plugin-zod";;
 import reactHooks from 'eslint-plugin-react-hooks';
-import reactRefresh from 'eslint-plugin-react-refresh';
+import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default tseslint.config(
   { ignores: ['dist'] },
@@ -14,6 +15,7 @@ export default tseslint.config(
       globals: globals.browser,
     },
     plugins: {
+      'zod': pluginZod,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
     },
