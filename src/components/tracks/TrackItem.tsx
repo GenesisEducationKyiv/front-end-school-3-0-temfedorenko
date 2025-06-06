@@ -3,8 +3,9 @@ import { Edit, Delete, AudioFile, HighlightOff } from '@mui/icons-material';
 
 import { Audio } from './Audio';
 import { useStore } from '../../store';
+import { API_BASE_URL, endpoints } from '../../api/endpoints';
 import defaultCoverImage from '../../assets/images/cover-image.jpg';
-import { EDIT_TRACK, API_BASE_URL, DELETE_TRACK, UPLOAD_TRACK_FILE, DELETE_TRACK_FILE } from '../../constants';
+import { EDIT_TRACK, DELETE_TRACK, UPLOAD_TRACK_FILE, DELETE_TRACK_FILE } from '../../constants';
 
 import type { ITrack } from '../../types/track.types';
 ///////////////////////////////////////////////////////
@@ -45,7 +46,7 @@ export function TrackItem({ track }: { track: ITrack }) {
         {
           audioFile &&
           <Box display='flex' gap='5px' alignItems='center' justifyContent='flex-start'>
-            <Audio id={id} url={`${API_BASE_URL}/files/${audioFile}`} />
+            <Audio id={id} url={`${API_BASE_URL}${endpoints.files}/${audioFile}`} />
             <IconButton title='Delete audio file' onClick={() => openTrackModal({ track, type: DELETE_TRACK_FILE })}>
               <HighlightOff />
             </IconButton>

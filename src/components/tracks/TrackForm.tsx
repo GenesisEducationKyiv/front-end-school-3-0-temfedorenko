@@ -16,7 +16,7 @@ import { useStore } from '../../store/index';
 import { showToast, getErrorMessage } from '../../helpers/index';
 import { useTrackGenresData } from '../../hooks/useTrackGenresData';
 import { createTrackRequest, updateTrackRequest } from '../../api/tracks';
-import { FIELD_ALBUM, FIELD_GENRES, FIELD_TITLE, FIELD_ARTIST, FIELD_COVER_IMAGE } from '../../constants/index';
+import { FIELD_ALBUM, FIELD_GENRES, FIELD_TITLE, FIELD_ARTIST, FIELD_COVER_IMAGE, TRACKS_QUERY_KEY } from '../../constants/index';
 //////////////////////////////////////////////////
 
 const validationSchema = yup.object().shape({
@@ -105,7 +105,7 @@ export function TrackForm({ isCreate = false, handleClose }: { isCreate?: boolea
   const { mutate: createOrUpdateTrack, isPending: isCreating, isError: isCreateError, error: createError } = useMutation({
     mutationFn: isCreate ? createTrackRequest : updateTrackRequest,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['tracks'] });
+      queryClient.invalidateQueries({ queryKey: [TRACKS_QUERY_KEY] });
 
       handleClose();
       showToast(isCreate ? 'Track created successfully' : 'Track updated successfully');

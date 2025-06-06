@@ -17,9 +17,9 @@ import {
 } from '@mui/material';
 
 import { useStore } from '../../store/index';
-import { FIELD_AUDIO_FILE } from '../../constants/index';
 import { uploadTrackFileRequest } from '../../api/tracks';
 import { showToast, getErrorMessage } from '../../helpers/index';
+import { FIELD_AUDIO_FILE, TRACKS_QUERY_KEY } from '../../constants/index';
 ///////////////////////////////////////////////////////
 
 const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024; // 10MB
@@ -65,7 +65,7 @@ export function UploadTrackFileForm({ handleClose }: { handleClose: () => void }
   const { mutate: uploadTrack, isPending, isError, error } = useMutation({
     mutationFn: uploadTrackFileRequest,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['tracks'] });
+      queryClient.invalidateQueries({ queryKey: [TRACKS_QUERY_KEY] });
 
       handleClose();
       showToast('Track file uploaded successfully');

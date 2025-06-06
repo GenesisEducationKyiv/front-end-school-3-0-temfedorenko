@@ -13,6 +13,10 @@ export const TRACK_MODAL_TYPES = {
   [DELETE_TRACK_FILE]: DELETE_TRACK_FILE,
 } as const;
 
+// query keys
+export const TRACKS_QUERY_KEY = 'tracks';
+export const GENRES_QUERY_KEY = 'genres';
+
 // fields
 export const FIELD_TITLE = 'title';
 export const FIELD_ALBUM = 'album';
@@ -20,9 +24,6 @@ export const FIELD_ARTIST = 'artist';
 export const FIELD_GENRES = 'genres';
 export const FIELD_AUDIO_FILE = 'audioFile';
 export const FIELD_COVER_IMAGE = 'coverImage';
-
-// api
-export const API_BASE_URL = 'http://localhost:8000/api';
 
 // options
 export const TRACK_SORT_OPTIONS_MAP = {
