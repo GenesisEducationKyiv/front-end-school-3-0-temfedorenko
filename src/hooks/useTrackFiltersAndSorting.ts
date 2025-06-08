@@ -12,9 +12,9 @@ import { isValidGenre, isTSortOption } from '../types/track.guards';
 type TUrlParamName = typeof SORT_URL_PARAM | typeof GENRE_URL_PARAM | typeof SEARCH_URL_PARAM;
 
 const getBeltUrlParam = <T extends string>(
-params: URLSearchParams,
-name: TUrlParamName,
-isValid: (value: string) => value is T
+  params: URLSearchParams,
+  name: TUrlParamName,
+  isValid: (value: string) => value is T
 ): Belt.Option<T> => Belt.pipe(
   Belt.O.fromNullable(params.get(name)),
   Belt.O.map((value) => value.trim()),
