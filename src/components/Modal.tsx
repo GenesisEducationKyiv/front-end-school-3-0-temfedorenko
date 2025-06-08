@@ -1,4 +1,3 @@
-import React from 'react';
 import { Close } from '@mui/icons-material';
 import {
   Box,
@@ -12,15 +11,28 @@ import {
   CircularProgress,
 } from '@mui/material';
 
-import { getErrorMessage } from '../helpers/index.jsx';
+import { getErrorMessage } from '../helpers/index';
+
+import type { JSX } from '@emotion/react/jsx-runtime';
 ///////////////////////////////////////////////////////
 
- export function ModalComponent({ title, error, isError, children, handleClose, isConfirm, handleConfirm, isLoading }) {
+interface IProps {
+  title: string;
+  error?: Error | null;
+  isError?: boolean;
+  children: JSX.Element;
+  handleClose: () => void;
+  isConfirm?: boolean;
+  handleConfirm?: () => void;
+  isLoading?: boolean;
+}
+
+ export function ModalComponent({ title, error, isError, children, handleClose, isConfirm, handleConfirm, isLoading }: IProps) {
   return (
     <Dialog
       open={true}
       onClose={handleClose}
-      slotProps={{ paper: { 'data-testid': isConfirm ? 'confirm-dialog' : 'dialog-container' }}}
+      slotProps={{ paper: { 'data-testid': isConfirm ? 'confirm-dialog' : 'dialog-container' } as React.HTMLAttributes<HTMLDivElement>}}
     >
       <Box pr='10px' display='flex' alignItems='center' justifyContent='space-between'>
         <DialogTitle maxWidth={300}>{title}</DialogTitle>

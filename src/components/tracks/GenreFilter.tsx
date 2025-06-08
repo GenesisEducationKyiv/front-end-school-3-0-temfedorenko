@@ -1,9 +1,8 @@
-import React from 'react';
-import { Box } from '@mui/material';
-
-import { useStore } from '../../store';
 import { SelectComponent } from '../Select';
+import { useStore } from '../../store/index';
 import { useTrackGenresData } from '../../hooks/useTrackGenresData';
+
+import type { SelectChangeEvent } from '@mui/material';
 //////////////////////////////////////////////////
 
 export function GenreFilter() {
@@ -13,19 +12,19 @@ export function GenreFilter() {
 
   if (!genres || isGenresError) return null;
 
-  const handleChange = (event) => setGenreFilter(event.target.value);
+  const handleChange = (event: SelectChangeEvent<string>) => setGenreFilter(event.target.value);
 
   const options = genres?.map((name) => ({ label: name, value: name }));
 
   return (
     <SelectComponent
-      value={genreFilter}
       id='filteringByGenre'
       label='Filter by Genre'
       styles={{ width: 200 }}
+      value={genreFilter || ''}
       dataTestId='filter-genre'
       handleChange={handleChange}
-      options={[{ value: null, label: 'Clear' }, ...options]}
+      options={[{ value: '', label: 'Clear' }, ...options]}
     />
   );
 }

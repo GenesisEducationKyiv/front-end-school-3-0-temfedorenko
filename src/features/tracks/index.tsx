@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box } from '@mui/material';
 
 import { Panel } from '../../components/tracks/Panel';
@@ -8,7 +7,7 @@ import { PaginationComponent } from '../../components/tracks/Pagination';
 
 export function TracksPage() {
   return (
-    <Box as='section'>
+    <Box component='section'>
       <Panel />
       <TrackList />
       <PaginationComponent />
