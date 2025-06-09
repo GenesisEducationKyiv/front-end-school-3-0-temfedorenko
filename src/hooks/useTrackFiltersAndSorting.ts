@@ -42,7 +42,7 @@ export function useTrackFiltersAndSorting() {
       const params = new URLSearchParams(prevParams);
 
       Belt.pipe(
-        Belt.O.fromNullable(value || null),
+        Belt.O.fromNullable(value === '' ? Belt.O.None : Belt.O.Some(value)),
         Belt.O.match(
           (value) => params.set(name, value),
           () => params.delete(name),
