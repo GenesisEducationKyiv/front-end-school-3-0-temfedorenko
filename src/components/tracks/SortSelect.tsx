@@ -1,5 +1,6 @@
-import { useStore } from '../../store';
 import { SelectComponent } from '../Select';
+import { SORT_URL_PARAM } from '../../constants';
+import { useTrackFiltersAndSorting } from '../../hooks/useTrackFiltersAndSorting';
 
 import type { SelectChangeEvent } from '@mui/material';
 import type { TSortOption } from '../../types/track.types';
@@ -23,17 +24,17 @@ const sortOptions: ISortOption[] = [
 ];
 
 export function SortSelect() {
-  const { sortOption, setSortOption } = useStore();
+  const { sortOption, setFilters } = useTrackFiltersAndSorting();
 
-  const handleChange = (event: SelectChangeEvent<string>) => setSortOption(event.target.value as TSortOption);
+  const handleChange = (event: SelectChangeEvent<string>) => setFilters(SORT_URL_PARAM, event.target.value as TSortOption);
 
   return (
     <SelectComponent
       id='sorting'
       label='Sort by'
+      value={sortOption}
       options={sortOptions}
       styles={{ width: 200 }}
-      value={sortOption || ''}
       dataTestId='sort-select'
       handleChange={handleChange}
     />

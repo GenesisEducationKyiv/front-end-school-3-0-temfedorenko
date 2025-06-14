@@ -17,9 +17,9 @@ const trackSchemaObject = {
 
 export const trackSchema = z.object({ ...trackSchemaObject, audioFile: z.string().optional() });
 
-export const uploadTrackFileSchema = z.object({ ...trackSchemaObject, audioFile: z.string() })
+export const uploadTrackFileSchema = z.object({ ...trackSchemaObject, audioFile: z.string() });
 
-export const deleteTrackFileSchema = z.object(trackSchemaObject).strict()
+export const deleteTrackFileSchema = z.object(trackSchemaObject).strict();
 
 export const tracksResponseSchema = z.object({
   data: z.array(trackSchema),

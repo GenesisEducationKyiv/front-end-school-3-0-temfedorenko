@@ -36,3 +36,8 @@ export const TRACK_SORT_OPTIONS_MAP = {
   'createdAt-asc': { sort: 'createdAt', order: 'asc' },
   'createdAt-desc': { sort: 'createdAt', order: 'desc' },
 } as const;
+
+// url params
+export const SORT_URL_PARAM = 'sort';
+export const GENRE_URL_PARAM = 'genre';
+export const SEARCH_URL_PARAM = 'search';

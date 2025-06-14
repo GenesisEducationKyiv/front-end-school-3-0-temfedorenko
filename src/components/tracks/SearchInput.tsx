@@ -1,18 +1,19 @@
 import { useMemo, useState } from 'react';
 
-import { useStore } from '../../store/index';
 import { setDebounce } from '../../helpers/index';
 import { TextFieldComponent } from '../TextInput';
+import { SEARCH_URL_PARAM } from '../../constants';
+import { useTrackFiltersAndSorting } from '../../hooks/useTrackFiltersAndSorting';
 // //////////////////////////////////////////////////
 
 export function SearchInput() {
-  const { searchQuery, setSearchQuery } = useStore();
+  const { setFilters, searchQuery } = useTrackFiltersAndSorting();
 
-  const [inputValue, setInputValue] = useState(searchQuery || '');
+  const [inputValue, setInputValue] = useState(searchQuery);
 
   const debouncedSetSearchQuery = useMemo(
-    () => setDebounce((value: string) => setSearchQuery(value), 800),
-    [setSearchQuery],
+    () => setDebounce((value: string) => setFilters(SEARCH_URL_PARAM, value), 800),
+    [setFilters],
   );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
