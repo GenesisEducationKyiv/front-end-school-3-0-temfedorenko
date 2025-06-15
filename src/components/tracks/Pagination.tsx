@@ -1,14 +1,18 @@
 import { Box, Pagination, PaginationItem } from '@mui/material';
 
 import { useStore } from '../../store';
+import { PAGE_URL_PARAM } from '../../constants';
+import { useTrackFiltersAndSorting } from '../../hooks/useTrackFiltersAndSorting';
 //////////////////////////////////////////////////////
 
 export function PaginationComponent() {
-  const { totalPages, currentPage, setCurrentPage } = useStore();
+  const { totalPages } = useStore();
+
+  const { setFilters, currentPage } = useTrackFiltersAndSorting();
 
   if (!totalPages) return null;
 
-  const handleChange = (_: React.ChangeEvent<unknown>, value: number) => setCurrentPage(value);
+  const handleChange = (_: React.ChangeEvent<unknown>, value: number) => setFilters(PAGE_URL_PARAM, String(value));
 
   return (
     <Box mt='30px' display='flex' justifyContent='center'>
