@@ -38,6 +38,7 @@ export const TRACK_SORT_OPTIONS_MAP = {
 } as const;
 
 // url params
+export const PAGE_URL_PARAM = 'page';
 export const SORT_URL_PARAM = 'sort';
 export const GENRE_URL_PARAM = 'genre';
 export const SEARCH_URL_PARAM = 'search';

@@ -45,3 +45,8 @@ export interface ITracksQuery {
   sort: string;
   order: string;
 }
+
+export interface IGenreOption {
+  label: string;
+  value: string;
+};

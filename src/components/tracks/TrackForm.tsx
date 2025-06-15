@@ -16,6 +16,7 @@ import { useStore } from '../../store/index';
 import { showToast, getErrorMessage } from '../../helpers/index';
 import { useTrackGenresData } from '../../hooks/useTrackGenresData';
 import { createTrackRequest, updateTrackRequest } from '../../api/tracks';
+import { useTrackFiltersAndSorting } from '../../hooks/useTrackFiltersAndSorting';
 import { FIELD_ALBUM, FIELD_GENRES, FIELD_TITLE, FIELD_ARTIST, FIELD_COVER_IMAGE, TRACKS_QUERY_KEY } from '../../constants/index';
 //////////////////////////////////////////////////
 
@@ -100,14 +101,21 @@ export function TrackForm({ isCreate = false, handleClose }: { isCreate?: boolea
 
   const { selectedTrack } = useStore();
 
+  const { currentPage, resetCurrentPage } = useTrackFiltersAndSorting();
+
   const { genres = [], genresError, isGenresError, isGenresLoading } = useTrackGenresData();
 
   const { mutate: createOrUpdateTrack, isPending: isCreating, isError: isCreateError, error: createError } = useMutation({
     mutationFn: isCreate ? createTrackRequest : updateTrackRequest,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [TRACKS_QUERY_KEY] });
-
       handleClose();
+
+      if (isCreate && currentPage !== 1) {
+        resetCurrentPage();
+      } else {
+        queryClient.invalidateQueries({ queryKey: [TRACKS_QUERY_KEY] });
+      }
+
       showToast(isCreate ? 'Track created successfully' : 'Track updated successfully');
     },
   });

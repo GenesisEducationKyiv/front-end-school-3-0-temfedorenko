@@ -3,6 +3,7 @@ import { useTrackGenresData } from '../../hooks/useTrackGenresData';
 import { useTrackFiltersAndSorting } from '../../hooks/useTrackFiltersAndSorting';
 
 import { GENRE_URL_PARAM } from '../../constants';
+import { createGenreOptions } from '../../helpers';
 
 import type { SelectChangeEvent } from '@mui/material';
 //////////////////////////////////////////////////
@@ -16,7 +17,7 @@ export function GenreFilter() {
 
   const handleChange = (event: SelectChangeEvent<string>) => setFilters(GENRE_URL_PARAM, event.target.value);
 
-  const options = genres?.map((name) => ({ label: name, value: name }));
+  const options = createGenreOptions(genres);
 
   return (
     <SelectComponent

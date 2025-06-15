@@ -2,6 +2,9 @@ import { Box } from '@mui/material';
 import { toast, type TypeOptions } from 'react-toastify';
 
 import { isAxiosError } from 'axios';
+
+import { isValidString } from '../types/guards';
+import type { IGenreOption } from '../types/track.types';
 ///////////////////////////////////////////////////////
 
 interface IErrorResponseData {
@@ -35,6 +38,10 @@ const showToast = (message: string, type: TypeOptions = 'success') => toast(
   <Box data-testid={`toast-${type}`}>{message}</Box>,
   { type },
 );
+
+export const createGenreOptions = (genres: unknown[] = []): IGenreOption[] => genres
+  .filter(isValidString)
+  .map((genre) => ({ label: genre, value: genre }));
 
 export {
   showToast,
