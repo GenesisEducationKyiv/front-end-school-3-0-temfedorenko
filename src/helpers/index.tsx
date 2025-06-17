@@ -39,12 +39,13 @@ const showToast = (message: string, type: TypeOptions = 'success') => toast(
   { type },
 );
 
-export const createGenreOptions = (genres: unknown[] = []): IGenreOption[] => genres
+const createGenreOptions = (genres: unknown[] = []): IGenreOption[] => genres
   .filter(isValidString)
   .map((genre) => ({ label: genre, value: genre }));
 
 export {
   showToast,
   setDebounce,
-  getErrorMessage
+  getErrorMessage,
+  createGenreOptions,
 };
