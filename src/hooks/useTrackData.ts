@@ -3,16 +3,16 @@ import { useQuery } from '@tanstack/react-query';
 
 import { useStore } from '../store';
 import { getTracksRequest } from '../api/tracks';
-import { TRACKS_QUERY_KEY, TRACK_SORT_OPTIONS_MAP } from '../constants';
+import { PAGE_URL_PARAM, TRACKS_QUERY_KEY, TRACK_SORT_OPTIONS_MAP } from '../constants';
 import { useTrackFiltersAndSorting } from './useTrackFiltersAndSorting';
 
 import type { ITracksResponse } from '../types/track.types';
 ///////////////////////////////////////////////////////
 
 export const useTrackData = () => {
-  const { currentPage, setTotalPages, setCurrentPage } = useStore();
+  const { setTotalPages } = useStore();
 
-  const { sortOption, genreFilter, searchQuery } = useTrackFiltersAndSorting();
+  const { sortOption, currentPage, genreFilter, searchQuery, setFilters } = useTrackFiltersAndSorting();
 
   const { data, error, isError, isLoading } = useQuery<ITracksResponse>({
     queryFn: getTracksRequest,
@@ -27,11 +27,11 @@ export const useTrackData = () => {
 
   useEffect(() => {
     if (data?.meta) {
-      setCurrentPage(data.meta.page);
+      setFilters(PAGE_URL_PARAM, String(data.meta.page));
       setTotalPages(data.meta.totalPages);
     }
     
-  }, [data, setTotalPages, setCurrentPage]);
+  }, [data, setFilters, setTotalPages]);
 
   return {
     data,
