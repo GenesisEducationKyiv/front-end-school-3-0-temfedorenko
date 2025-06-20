@@ -19,11 +19,10 @@ export function TextFieldComponent({ id, value, label, testId, styles = {}, hand
         sx={styles}
         label={label}
         value={value || ''}
+        data-testid={testId}
         onChange={handleChange}
-        slotProps={{
-          htmlInput: { 'data-testid': testId },
-          inputLabel: { style: { color: '#828282' } },
-        }}
+        inputProps={{ 'data-testid': testId }}
+        InputLabelProps={{ style: { color: '#828282' } }}
       />
     </Box>
   );

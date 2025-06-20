@@ -25,23 +25,25 @@ interface IProps {
   isConfirm?: boolean;
   handleConfirm?: () => void;
   isLoading?: boolean;
+  disablePortal?: boolean;
 }
 
- export function ModalComponent({ title, error, isError, children, handleClose, isConfirm, handleConfirm, isLoading }: IProps) {
+ export function ModalComponent({ title, error, isError, children, handleClose, isConfirm, handleConfirm, isLoading, disablePortal }: IProps) {
   return (
     <Dialog
       open={true}
       onClose={handleClose}
-      slotProps={{ paper: { 'data-testid': isConfirm ? 'confirm-dialog' : 'dialog-container' } as React.HTMLAttributes<HTMLDivElement>}}
+      disablePortal={disablePortal}
+      PaperProps={{ 'data-testid': isConfirm ? 'confirm-dialog' : 'dialog-container' } as React.HTMLAttributes<HTMLDivElement>}
     >
       <Box pr='10px' display='flex' alignItems='center' justifyContent='space-between'>
-        <DialogTitle maxWidth={300}>{title}</DialogTitle>
-        <IconButton onClick={handleClose}><Close /></IconButton>
+        <DialogTitle maxWidth={300} data-testid='modal-title'>{title}</DialogTitle>
+        <IconButton onClick={handleClose} data-testid='close-modal'><Close /></IconButton>
       </Box>
       <DialogContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         {children}
       </DialogContent>
-      {isError && <Alert severity='error'>{getErrorMessage(error)}</Alert>}
+      {isError && <Alert severity='error' data-testid='modal-error-message'>{getErrorMessage(error)}</Alert>}
       {
         isConfirm &&
         <DialogActions sx={{ p: '24px' }}>
