@@ -171,7 +171,7 @@ export function TrackForm({ isCreate = false, handleClose }: { isCreate?: boolea
                     helperText={error}
                     required={required}
                     sx={getTextInputStyles()}
-                    slotProps={{ inputLabel }}
+                    InputLabelProps={inputLabel}
                     FormHelperTextProps={{ 'data-testid': 'error-genre' } as React.HTMLAttributes<HTMLDivElement>}
                     inputProps={{
                       ...params.inputProps,
@@ -199,9 +199,10 @@ export function TrackForm({ isCreate = false, handleClose }: { isCreate?: boolea
               fullWidth={true}
               helperText={error}
               required={required}
+              InputProps={inputProps}
               sx={getTextInputStyles(56)}
+              InputLabelProps={inputLabel}
               inputProps={{ 'data-testid': testId }}
-              slotProps={{ inputLabel, input: inputProps }}
               FormHelperTextProps={{ 'data-testid': `error-${name}` } as React.HTMLAttributes<HTMLDivElement>}
             />
           );
