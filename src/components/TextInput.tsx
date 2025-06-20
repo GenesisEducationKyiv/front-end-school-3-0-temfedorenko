@@ -19,7 +19,6 @@ export function TextFieldComponent({ id, value, label, testId, styles = {}, hand
         sx={styles}
         label={label}
         value={value || ''}
-        data-testid={testId}
         onChange={handleChange}
         inputProps={{ 'data-testid': testId }}
         InputLabelProps={{ style: { color: '#828282' } }}
