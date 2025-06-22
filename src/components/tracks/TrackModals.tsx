@@ -2,14 +2,17 @@ import { DialogContentText } from '@mui/material';
 
 import { TrackForm } from './TrackForm';
 import { ModalComponent } from '../Modal';
-import { useStore } from '../../store/index';
+import { useTracksStore } from '../../store';
 import { UploadTrackFileForm } from './UploadTrackFileForm';
 import { useDeleteActions } from '../../hooks/useDeleteActions';
-import { EDIT_TRACK, DELETE_TRACK, UPLOAD_TRACK_FILE, DELETE_TRACK_FILE } from '../../constants/index';
+import { selectTrackModal, selectSelectedTrack, selectCloseTrackModal } from '../../selectors';
+import { EDIT_TRACK, DELETE_TRACK, UPLOAD_TRACK_FILE, DELETE_TRACK_FILE } from '../../constants';
 ///////////////////////////////////////////////////////
 
 export function TrackModals() {
-  const { trackModal, selectedTrack, closeTrackModal } = useStore();
+  const trackModal = useTracksStore(selectTrackModal);
+  const selectedTrack = useTracksStore(selectSelectedTrack);
+  const closeTrackModal = useTracksStore(selectCloseTrackModal);
 
   const {
     isDeleting,

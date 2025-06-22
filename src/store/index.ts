@@ -7,7 +7,7 @@ import type { ITrack } from '../types/track.types';
 
 type TTrackModalType = keyof typeof TRACK_MODAL_TYPES;
 
-interface IStore {
+export interface IStore {
   totalPages: number;
   trackModal: TTrackModalType | null;
   selectedTrack: ITrack | Record<string, never>;
@@ -18,7 +18,7 @@ interface IStore {
   openTrackModal: ({ type, track }: { type: TTrackModalType; track?: ITrack | undefined }) => void;
 }
 
-export const useStore = create<IStore>((set) => ({
+export const useTracksStore = create<IStore>((set) => ({
   totalPages: 0,
   trackModal: null,
   selectedTrack: {},

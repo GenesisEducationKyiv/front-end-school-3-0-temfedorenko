@@ -2,7 +2,8 @@ import { Box, TableCell, TableRow, IconButton } from '@mui/material';
 import { Edit, Delete, AudioFile, HighlightOff } from '@mui/icons-material';
 
 import { Audio } from './Audio';
-import { useStore } from '../../store';
+import { useTracksStore } from '../../store';
+import { selectOpenTrackModal } from '../../selectors';
 import { API_BASE_URL, endpoints } from '../../api/endpoints';
 import defaultCoverImage from '../../assets/images/cover-image.jpg';
 import { EDIT_TRACK, DELETE_TRACK, UPLOAD_TRACK_FILE, DELETE_TRACK_FILE } from '../../constants';
@@ -13,7 +14,7 @@ import type { ITrack } from '../../types/track.types';
 export function TrackItem({ track }: { track: ITrack }) {
   const { id, title, artist, album, genres, audioFile, coverImage } = track;
 
-  const { openTrackModal } = useStore();
+  const openTrackModal = useTracksStore(selectOpenTrackModal);
 
   const testId = `track-item-${id}`;
 

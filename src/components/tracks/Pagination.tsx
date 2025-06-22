@@ -1,12 +1,13 @@
 import { Box, Pagination, PaginationItem } from '@mui/material';
 
-import { useStore } from '../../store';
+import { useTracksStore } from '../../store';
 import { PAGE_URL_PARAM } from '../../constants';
+import { selectTotalPages } from '../../selectors';
 import { useTrackFiltersAndSorting } from '../../hooks/useTrackFiltersAndSorting';
 //////////////////////////////////////////////////////
 
 export function PaginationComponent() {
-  const { totalPages } = useStore();
+  const totalPages = useTracksStore(selectTotalPages);
 
   const { setFilters, currentPage } = useTrackFiltersAndSorting();
 

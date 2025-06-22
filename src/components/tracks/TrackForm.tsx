@@ -12,12 +12,20 @@ import {
   CircularProgress,
 } from '@mui/material';
 
-import { useStore } from '../../store/index';
-import { showToast, getErrorMessage } from '../../helpers/index';
+import { useTracksStore } from '../../store';
+import { selectSelectedTrack } from '../../selectors';
+import { showToast, getErrorMessage } from '../../helpers';
 import { useTrackGenresData } from '../../hooks/useTrackGenresData';
 import { createTrackRequest, updateTrackRequest } from '../../api/tracks';
 import { useTrackFiltersAndSorting } from '../../hooks/useTrackFiltersAndSorting';
-import { FIELD_ALBUM, FIELD_GENRES, FIELD_TITLE, FIELD_ARTIST, FIELD_COVER_IMAGE, TRACKS_QUERY_KEY } from '../../constants/index';
+import {
+  FIELD_ALBUM,
+  FIELD_TITLE,
+  FIELD_GENRES,
+  FIELD_ARTIST,
+  TRACKS_QUERY_KEY,
+  FIELD_COVER_IMAGE,
+} from '../../constants';
 //////////////////////////////////////////////////
 
 const validationSchema = yup.object().shape({
@@ -99,7 +107,7 @@ const getTextInputStyles = (height?: number) => ({
 export function TrackForm({ isCreate = false, handleClose }: { isCreate?: boolean; handleClose: () => void }) {
   const queryClient = useQueryClient();
 
-  const { selectedTrack } = useStore();
+  const selectedTrack = useTracksStore(selectSelectedTrack);
 
   const { currentPage, resetCurrentPage } = useTrackFiltersAndSorting();
 

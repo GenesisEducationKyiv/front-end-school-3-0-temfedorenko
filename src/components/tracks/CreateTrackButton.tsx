@@ -1,13 +1,16 @@
 import { Box, Button } from '@mui/material';
 
-import { useStore } from '../../store';
 import { TrackForm } from './TrackForm';
 import { ModalComponent } from '../Modal';
+import { useTracksStore } from '../../store';
 import { CREATE_TRACK } from '../../constants';
+import { selectTrackModal, selectOpenTrackModal, selectCloseTrackModal } from '../../selectors';
 //////////////////////////////////////////////////
 
 export function CreateTrackButton() {
-  const { trackModal, openTrackModal, closeTrackModal } = useStore();
+  const trackModal = useTracksStore(selectTrackModal);
+  const openTrackModal = useTracksStore(selectOpenTrackModal);
+  const closeTrackModal = useTracksStore(selectCloseTrackModal);
 
   return (
     <Box>
