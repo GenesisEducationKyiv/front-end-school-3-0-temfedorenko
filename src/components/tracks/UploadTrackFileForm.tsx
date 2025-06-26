@@ -1,15 +1,12 @@
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import { MuiFileInput } from 'mui-file-input';
+import { styled } from '@mui/material/styles';
 import { AttachFile } from '@mui/icons-material';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
-  Box,
   Stack,
   Alert,
   Button,
-  InputLabel,
-  Typography,
   FormControl,
   DialogActions,
   FormHelperText,
@@ -26,6 +23,10 @@ const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024; // 10MB
 const ALLOWED_FILE_TYPES = ['audio/mpeg', 'audio/ogg', 'audio/wav', 'audio/mp3'];
 
 const isFile = (value: unknown): value is File => value instanceof File;
+
+interface FormValues {
+  audioFile: File | null;
+}
 
 const validationSchema = yup.object().shape({
   [FIELD_AUDIO_FILE]: yup.mixed<File>()
@@ -50,12 +51,17 @@ const validationSchema = yup.object().shape({
     ),
 });
 
-const inputStyles = {
-  '.MuiFileInput-ClearIconButton': {
-    backgroundColor: '#4D4D4D',
-    '&:hover': { backgroundColor: '#222' },
-  },
-};
+const VisuallyHiddenInput = styled('input')({
+  left: 0,
+  width: 1,
+  height: 1,
+  bottom: 0,
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+  position: 'absolute',
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+});
 
 export function UploadTrackFileForm({ handleClose }: { handleClose: () => void }) {
   const { selectedTrack } = useStore();
@@ -72,7 +78,7 @@ export function UploadTrackFileForm({ handleClose }: { handleClose: () => void }
     },
   });
 
-  const { handleBlur, handleSubmit, setFieldValue, values, errors, touched } = useFormik({
+  const { handleBlur, handleSubmit, setFieldValue, values, errors, touched } = useFormik<FormValues>({
     validationSchema: validationSchema,
     initialValues: { [FIELD_AUDIO_FILE]: null },
     onSubmit: ({ audioFile }: { [FIELD_AUDIO_FILE]: File | null }) => {
@@ -86,33 +92,26 @@ export function UploadTrackFileForm({ handleClose }: { handleClose: () => void }
     },
   });
 
-  const handleFileChange = (value: File | null) => {
-    setFieldValue(FIELD_AUDIO_FILE, value);
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.currentTarget.files?.[0] ?? null;
+
+    setFieldValue(FIELD_AUDIO_FILE, file);
   };
 
   return (
     <Stack gap='30px' component='form' onSubmit={handleSubmit} sx={{ width: { xs: '100%', sm: 500 } }}>
       <FormControl error={touched.audioFile && !!errors.audioFile}>
-        {
-          !values.audioFile &&
-          <InputLabel error={!!errors.audioFile} htmlFor={FIELD_AUDIO_FILE}>
-            <Box display='flex' gap='10px' alignItems='center'>
-              <AttachFile />
-              <Typography>Attach an Audio File</Typography>
-            </Box>
-          </InputLabel>
-        }
-        <MuiFileInput
-          sx={inputStyles}
-          value={values.audioFile}
-          onChange={handleFileChange}
-          inputProps={{
-            onBlur: handleBlur,
-            id: FIELD_AUDIO_FILE,
-            name: FIELD_AUDIO_FILE,
-            accept: ALLOWED_FILE_TYPES.join(','),
-          }}
-        />
+        <Button component='label' startIcon={<AttachFile />}>
+          {isFile(values.audioFile) ? values.audioFile.name : 'Attach an Audio File'}
+          <VisuallyHiddenInput
+            type='file'
+            onBlur={handleBlur}
+            id={FIELD_AUDIO_FILE}
+            name={FIELD_AUDIO_FILE}
+            onChange={handleFileChange}
+            accept={ALLOWED_FILE_TYPES.join(',')}
+          />
+        </Button>
         {touched.audioFile && errors.audioFile && (
           <FormHelperText>{errors.audioFile}</FormHelperText>
         )}

@@ -11,7 +11,7 @@ interface ISortOption {
   value: TSortOption;
 }
 
-const sortOptions: ISortOption[] = [
+export const sortOptions: ISortOption[] = [
   { label: 'Clear', value: '' },
   { label: 'Title ↑', value: 'title-asc' },
   { label: 'Title ↓', value: 'title-desc' },
