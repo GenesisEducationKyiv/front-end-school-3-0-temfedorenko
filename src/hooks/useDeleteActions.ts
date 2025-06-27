@@ -1,14 +1,15 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { useStore } from '../store/index';
-import { showToast } from '../helpers/index';
+import { showToast } from '../helpers';
+import { useTracksStore } from '../store';
 import { TRACKS_QUERY_KEY } from '../constants';
+import { selectCloseTrackModal } from '../selectors';
 import { useTrackFiltersAndSorting } from './useTrackFiltersAndSorting';
 import { deleteTrackRequest, deleteTrackFileRequest } from '../api/tracks';
 ///////////////////////////////////////////////////////
 
 export const useDeleteActions = () => {
-  const { closeTrackModal } = useStore();
+  const closeTrackModal = useTracksStore(selectCloseTrackModal);
 
   const { currentPage, resetCurrentPage } = useTrackFiltersAndSorting();
 

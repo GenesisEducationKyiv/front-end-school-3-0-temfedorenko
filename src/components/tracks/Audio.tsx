@@ -3,7 +3,8 @@ import { Box, IconButton } from '@mui/material';
 import WavesurferPlayer from '@wavesurfer/react';
 import { PlayArrow, PauseCircle } from '@mui/icons-material';
 
-import { useStore } from '../../store';
+import { useTracksStore } from '../../store';
+import { selectPlayingTrackId, selectSetPlayingTrackId } from '../../selectors';
 
 import type WaveSurfer from 'wavesurfer.js';
 ///////////////////////////////////////////////////////
@@ -22,7 +23,8 @@ export function Audio({ id, url }: { id: string; url: string }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [wavesurfer, setWavesurfer] = useState<WaveSurfer | null>(null);
 
-  const { playingTrackId, setPlayingTrackId } = useStore();
+  const playingTrackId = useTracksStore(selectPlayingTrackId);
+  const setPlayingTrackId = useTracksStore(selectSetPlayingTrackId);
 
   useEffect(() => {
     return () => {

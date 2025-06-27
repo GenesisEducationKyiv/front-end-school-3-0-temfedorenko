@@ -3,7 +3,8 @@ import * as Belt from '@mobily/ts-belt';
 import { useSearchParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 
-import { useStore } from '../store';
+import { useTracksStore } from '../store';
+import { selectTotalPages } from '../selectors';
 
 import {
   PAGE_URL_PARAM,
@@ -30,7 +31,7 @@ const getBeltUrlParam = <T extends string>(
 );
 
 export function useTrackFiltersAndSorting() {
-  const { totalPages } = useStore();
+  const totalPages = useTracksStore(selectTotalPages);
 
   const queryClient = useQueryClient();
   const genres = queryClient.getQueryData<string[]>([GENRES_QUERY_KEY]);

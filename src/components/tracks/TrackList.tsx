@@ -13,7 +13,7 @@ import {
 
 import { TrackItem } from './TrackItem';
 import { TrackModals } from './TrackModals';
-import { getErrorMessage } from '../../helpers/index';
+import { getErrorMessage } from '../../helpers';
 import { useTrackData } from '../../hooks/useTrackData';
 ///////////////////////////////////////////////////////
 

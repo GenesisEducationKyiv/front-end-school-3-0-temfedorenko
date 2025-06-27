@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 
-import { setDebounce } from '../../helpers/index';
+import { setDebounce } from '../../helpers';
 import { TextFieldComponent } from '../TextInput';
 import { SEARCH_URL_PARAM } from '../../constants';
 import { useTrackFiltersAndSorting } from '../../hooks/useTrackFiltersAndSorting';
