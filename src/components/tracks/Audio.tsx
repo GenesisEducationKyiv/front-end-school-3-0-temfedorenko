@@ -1,7 +1,9 @@
+import Box from '@mui/material/Box';
 import { useState, useEffect } from 'react';
-import { Box, IconButton } from '@mui/material';
 import WavesurferPlayer from '@wavesurfer/react';
-import { PlayArrow, PauseCircle } from '@mui/icons-material';
+import IconButton from '@mui/material/IconButton';
+import PlayArrow from '@mui/icons-material/PlayArrow';
+import PauseCircle from '@mui/icons-material/PauseCircle';
 
 import { useTracksStore } from '../../store';
 import { selectPlayingTrackId, selectSetPlayingTrackId } from '../../selectors';
@@ -19,7 +21,7 @@ const wrapperStyles = {
 
 const playerWrapperStyles = { width: '100%', cursor: 'pointer' };
 
-export function Audio({ id, url }: { id: string; url: string }) {
+export default function Audio({ id, url }: { id: string; url: string }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [wavesurfer, setWavesurfer] = useState<WaveSurfer | null>(null);
 

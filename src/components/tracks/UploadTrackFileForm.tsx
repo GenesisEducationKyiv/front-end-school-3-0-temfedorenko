@@ -1,17 +1,16 @@
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import { styled } from '@mui/material/styles';
-import { AttachFile } from '@mui/icons-material';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import {
-  Stack,
-  Alert,
-  Button,
-  FormControl,
-  DialogActions,
-  FormHelperText,
-  CircularProgress,
-} from '@mui/material';
+
+import Stack from '@mui/material/Stack';
+import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
+import styled from '@mui/material/styles/styled';
+import FormControl from '@mui/material/FormControl';
+import AttachFile from '@mui/icons-material/AttachFile';
+import DialogActions from '@mui/material/DialogActions';
+import FormHelperText from '@mui/material/FormHelperText';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { useTracksStore } from '../../store';
 import { selectSelectedTrack } from '../../selectors';
@@ -64,7 +63,7 @@ const VisuallyHiddenInput = styled('input')({
   clipPath: 'inset(50%)',
 });
 
-export function UploadTrackFileForm({ handleClose }: { handleClose: () => void }) {
+export default function UploadTrackFileForm({ handleClose }: { handleClose: () => void }) {
   const selectedTrack = useTracksStore(selectSelectedTrack);
 
   const queryClient = useQueryClient();

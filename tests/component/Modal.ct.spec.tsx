@@ -1,7 +1,7 @@
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { test, expect } from '@playwright/experimental-ct-react';
 
-import { ModalComponent } from '../../src/components/Modal';
+import ModalComponent from '../../src/components/Modal';
 ///////////////////////////////////////////////////////
 
 test.describe('ModalComponent', () => {
