@@ -1,11 +1,8 @@
-import {
-  Box,
-  Select,
-  MenuItem,
-  InputLabel,
-  FormControl,
-  type SelectChangeEvent,
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import Select, { type SelectChangeEvent } from '@mui/material/Select';
 ///////////////////////////////////////////////////////
 
 interface IProps {

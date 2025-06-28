@@ -2,8 +2,8 @@ import { SelectComponent } from '../Select';
 import { SORT_URL_PARAM } from '../../constants';
 import { useTrackFiltersAndSorting } from '../../hooks/useTrackFiltersAndSorting';
 
-import type { SelectChangeEvent } from '@mui/material';
 import type { TSortOption } from '../../types/track.types';
+import type { SelectChangeEvent } from '@mui/material/Select';
 //////////////////////////////////////////////////
 
 interface ISortOption {

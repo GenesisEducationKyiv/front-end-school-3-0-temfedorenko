@@ -1,15 +1,13 @@
-import {
-  Box,
-  Table,
-  Paper,
-  Alert,
-  TableRow,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableContainer,
-  CircularProgress,
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import Table from '@mui/material/Table';
+import Paper from '@mui/material/Paper';
+import Alert from '@mui/material/Alert';
+import TableRow from '@mui/material/TableRow';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableContainer from '@mui/material/TableContainer';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { TrackItem } from './TrackItem';
 import { TrackModals } from './TrackModals';

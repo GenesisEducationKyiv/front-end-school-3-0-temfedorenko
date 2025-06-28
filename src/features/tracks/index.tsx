@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 
 import { Panel } from '../../components/tracks/Panel';
 import { TrackList } from '../../components/tracks/TrackList';

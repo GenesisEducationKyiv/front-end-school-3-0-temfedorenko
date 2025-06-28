@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { toast, type TypeOptions } from 'react-toastify';
 
 import { isAxiosError } from 'axios';
