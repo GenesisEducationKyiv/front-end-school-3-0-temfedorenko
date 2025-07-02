@@ -1,4 +1,5 @@
-export const API_BASE_URL = 'http://localhost:8000/api';
+export const BASE_URL = 'http://localhost:8000';
+export const API_BASE_URL = `${BASE_URL}/api`;
 
 const FILES_ENDPOINT = '/files';
 const GENRES_ENDPOINT = '/genres';
