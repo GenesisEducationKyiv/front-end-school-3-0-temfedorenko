@@ -1,13 +1,16 @@
-import { DialogContentText } from '@mui/material';
+import { lazy } from 'react';
+import DialogContentText from '@mui/material/DialogContentText';
 
-import { TrackForm } from './TrackForm';
-import { ModalComponent } from '../Modal';
+import { Fallback } from '../Fallback';
 import { useTracksStore } from '../../store';
-import { UploadTrackFileForm } from './UploadTrackFileForm';
 import { useDeleteActions } from '../../hooks/useDeleteActions';
 import { selectTrackModal, selectSelectedTrack, selectCloseTrackModal } from '../../selectors';
 import { EDIT_TRACK, DELETE_TRACK, UPLOAD_TRACK_FILE, DELETE_TRACK_FILE } from '../../constants';
 ///////////////////////////////////////////////////////
+
+const TrackForm = lazy(() => import('./TrackForm'));
+const ModalComponent = lazy(() => import('../Modal'));
+const UploadTrackFileForm = lazy(() => import('./UploadTrackFileForm'));
 
 export function TrackModals() {
   const trackModal = useTracksStore(selectTrackModal);
@@ -28,11 +31,11 @@ export function TrackModals() {
   const modalConfig = {
     [EDIT_TRACK]: {
       title: 'Edit Track',
-      content: <TrackForm handleClose={closeTrackModal} />,
+      content: <Fallback><TrackForm handleClose={closeTrackModal} /></Fallback>,
     },
     [UPLOAD_TRACK_FILE]: {
       title: 'Upload Track File',
-      content: <UploadTrackFileForm handleClose={closeTrackModal} />,
+      content: <Fallback><UploadTrackFileForm handleClose={closeTrackModal} /></Fallback>,
     },
     [DELETE_TRACK]: {
       isConfirm: true,

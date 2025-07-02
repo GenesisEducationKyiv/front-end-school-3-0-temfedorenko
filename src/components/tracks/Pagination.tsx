@@ -1,4 +1,6 @@
-import { Box, Pagination, PaginationItem } from '@mui/material';
+import Box from '@mui/material/Box';
+import Pagination from '@mui/material/Pagination';
+import PaginationItem from '@mui/material/PaginationItem';
 
 import { useTracksStore } from '../../store';
 import { PAGE_URL_PARAM } from '../../constants';

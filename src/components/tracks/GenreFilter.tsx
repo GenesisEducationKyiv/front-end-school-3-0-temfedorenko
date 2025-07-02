@@ -5,7 +5,7 @@ import { useTrackFiltersAndSorting } from '../../hooks/useTrackFiltersAndSorting
 import { GENRE_URL_PARAM } from '../../constants';
 import { createGenreOptions } from '../../helpers';
 
-import type { SelectChangeEvent } from '@mui/material';
+import type { SelectChangeEvent } from '@mui/material/Select';
 //////////////////////////////////////////////////
 
 export function GenreFilter() {

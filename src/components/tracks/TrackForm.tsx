@@ -1,16 +1,14 @@
 import * as yup from 'yup';
-import { Add } from '@mui/icons-material';
+import Stack from '@mui/material/Stack';
+import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
+import Add from '@mui/icons-material/Add';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import DialogActions from '@mui/material/DialogActions';
+import CircularProgress from '@mui/material/CircularProgress';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { getIn, useFormik, type FormikErrors, type FormikTouched } from 'formik';
-import {
-  Stack,
-  Alert,
-  Button,
-  TextField,
-  Autocomplete,
-  DialogActions,
-  CircularProgress,
-} from '@mui/material';
 
 import { useTracksStore } from '../../store';
 import { selectSelectedTrack } from '../../selectors';
@@ -104,7 +102,7 @@ const getTextInputStyles = (height?: number) => ({
   '& .MuiOutlinedInput-root': { height },
 });
 
-export function TrackForm({ isCreate = false, handleClose }: { isCreate?: boolean; handleClose: () => void }) {
+export default function TrackForm({ isCreate = false, handleClose }: { isCreate?: boolean; handleClose: () => void }) {
   const queryClient = useQueryClient();
 
   const selectedTrack = useTracksStore(selectSelectedTrack);

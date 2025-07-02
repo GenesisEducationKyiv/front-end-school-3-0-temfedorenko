@@ -1,15 +1,13 @@
-import { Close } from '@mui/icons-material';
-import {
-  Box,
-  Alert,
-  Dialog,
-  Button,
-  IconButton,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  CircularProgress,
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
+import Dialog from '@mui/material/Dialog';
+import Button from '@mui/material/Button';
+import Close from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { getErrorMessage } from '../helpers';
 
@@ -28,7 +26,7 @@ interface IProps {
   disablePortal?: boolean;
 }
 
- export function ModalComponent({ title, error, isError, children, handleClose, isConfirm, handleConfirm, isLoading, disablePortal }: IProps) {
+export default function ModalComponent({ title, error, isError, children, handleClose, isConfirm, handleConfirm, isLoading, disablePortal }: IProps) {
   return (
     <Dialog
       open={true}
