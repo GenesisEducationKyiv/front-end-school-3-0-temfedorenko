@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "test": "vitest",
     "test-e2e": "npx playwright test",
-    "test-ct": "playwright test -c playwright-ct.config.ts"
+    "test-ct": "playwright test -c playwright-ct.config.ts",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
