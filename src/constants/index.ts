@@ -1,3 +1,5 @@
+import type { ISortOption } from '../types/track.types';
+
 // track modal types
 export const EDIT_TRACK = 'editTrack';
 export const CREATE_TRACK = 'createTrack';
@@ -36,6 +38,18 @@ export const TRACK_SORT_OPTIONS_MAP = {
   'createdAt-asc': { sort: 'createdAt', order: 'asc' },
   'createdAt-desc': { sort: 'createdAt', order: 'desc' },
 } as const;
+
+export const TRACK_SORT_OPTIONS: ISortOption[] = [
+  { label: 'Clear', value: '' },
+  { label: 'Title ↑', value: 'title-asc' },
+  { label: 'Title ↓', value: 'title-desc' },
+  { label: 'Artist ↑', value: 'artist-asc' },
+  { label: 'Artist ↓', value: 'artist-desc' },
+  { label: 'Album ↑', value: 'album-asc' },
+  { label: 'Album ↓', value: 'album-desc' },
+  { label: 'Newest', value: 'createdAt-desc' },
+  { label: 'Oldest', value: 'createdAt-asc' },
+];
 
 // url params
 export const PAGE_URL_PARAM = 'page';
