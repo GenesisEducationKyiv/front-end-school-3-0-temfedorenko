@@ -3,6 +3,8 @@ import { screen, render, fireEvent } from '@testing-library/react';
 import { SORT_URL_PARAM } from '../../../constants';
 import { SortSelect, sortOptions } from '../SortSelect';
 import { useTrackFiltersAndSorting } from '../../../hooks/useTrackFiltersAndSorting';
+
+import type { TSortOption } from '../../../types/track.types';
 ///////////////////////////////////////////////////////
 
 vi.mock('../../../hooks/useTrackFiltersAndSorting');
@@ -77,5 +79,20 @@ describe('SortSelect component', () => {
 
     expect(mockSetFilters).toHaveBeenCalledTimes(1);
     expect(mockSetFilters).toHaveBeenCalledWith(SORT_URL_PARAM, sortOptions[1].value);
+  });
+
+  test('should render with invalid default value', async () => {
+    vi.mocked(useTrackFiltersAndSorting).mockReturnValue({
+      ...defaultHookPartialReturnValue,
+      setFilters: mockSetFilters,
+      sortOption: 'invalid-value' as TSortOption,
+    });
+
+    const { getByTestId } = render(<SortSelect />);
+
+    const sortSelect = getByTestId(testId);
+
+    expect(sortSelect).toBeInTheDocument();
+    expect(sortSelect).toHaveValue('invalid-value');
   });
 });

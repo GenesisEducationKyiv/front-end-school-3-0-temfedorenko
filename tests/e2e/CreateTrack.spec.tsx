@@ -16,7 +16,9 @@ test.describe('Create Track', () => {
     inputArtist: 'input-artist',
     errorArtist: 'error-artist',
     submitButton: 'submit-button',
+    cancelButton: 'cancel-button',
     genreSelector: 'genre-selector',
+    errorCoverImage: 'error-coverImage',
     inputCoverImage: 'input-cover-image',
     createTrackButton: 'create-track-button',
   };
@@ -60,6 +62,21 @@ test.describe('Create Track', () => {
     await expect(page.getByTestId(testIds.errorArtist)).toBeVisible();
   });
 
+  test('should show the valitadion error when coverImage is an invalid url', async ({ page }) => {
+    await openCreateTrackModal(page);
+
+    await page.getByTestId(testIds.inputCoverImage).fill('invalid url');
+
+    const submitButton = page.getByTestId(testIds.submitButton);
+
+    await submitButton.click();
+
+    const errorMsg = page.getByTestId(testIds.errorCoverImage);
+
+    await expect(errorMsg).toBeVisible();
+    await expect(errorMsg).toHaveText('Should be a valid URL');
+  });
+
   test('should create a new track, close the modal and show it in the list', async ({ page }) => {
     const randomSuffix = `${Date.now()}${Math.floor(Math.random() * 10000)}`;
 
@@ -81,5 +98,21 @@ test.describe('Create Track', () => {
 
     await expect(page.getByTestId(testIds.trackForm)).toBeHidden();
     await expect(page.getByText(`test title ${randomSuffix}`)).toBeVisible();
+  });
+
+  test('should cancel track creation and close the modal without adding a new track', async ({ page }) => {
+    const randomSuffix = `${Date.now()}${Math.floor(Math.random() * 10000)}`;
+    const testTitle = `test title ${randomSuffix}`;
+
+    await openCreateTrackModal(page);
+
+    await page.getByTestId(testIds.inputTitle).fill(testTitle);
+    await page.getByTestId(testIds.inputAlbum).fill('test album');
+    await page.getByTestId(testIds.inputArtist).fill('test artist');
+
+    await page.getByTestId(testIds.cancelButton).click();
+
+    await expect(page.getByText(testTitle)).toHaveCount(0);
+    await expect(page.getByTestId(testIds.trackForm)).toBeHidden();
   });
 });
