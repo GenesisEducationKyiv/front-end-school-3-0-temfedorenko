@@ -11,6 +11,7 @@ export function AppHeader() {
         component='h1'
         data-testid='tracks-header'
         sx={{
+          mt: '50px',
           mb: '100px',
           fontWeight: 700,
           color: '#4D4D4D',

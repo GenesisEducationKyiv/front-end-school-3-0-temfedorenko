@@ -58,6 +58,7 @@ export default function Audio({ id, url }: { id: string; url: string }) {
   return (
     <Box sx={wrapperStyles} data-testid={`audio-player-${id}`}>
       <IconButton
+        aria-label='play/pause'
         disabled={isBtnDisabled}
         onClick={handlePlayPause}
         data-disabled={isBtnDisabled}

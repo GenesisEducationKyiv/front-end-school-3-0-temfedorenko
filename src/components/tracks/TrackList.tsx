@@ -3,11 +3,11 @@ import Table from '@mui/material/Table';
 import Paper from '@mui/material/Paper';
 import Alert from '@mui/material/Alert';
 import TableRow from '@mui/material/TableRow';
+import Skeleton from '@mui/material/Skeleton';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableContainer from '@mui/material/TableContainer';
-import CircularProgress from '@mui/material/CircularProgress';
 
 import { TrackItem } from './TrackItem';
 import { TrackModals } from './TrackModals';
@@ -27,9 +27,7 @@ export function TrackList() {
 
   if (isLoading) {
     return (
-      <Box sx={{ mt: '20px', display: 'flex', justifyContent: 'center' }}>
-        <CircularProgress color='inherit' data-testid='loading-tracks' />
-      </Box>
+      <Skeleton variant='rectangular' sx={{ height: 200, width: 1100, mt: '20px' }} />
     );
   }
 
@@ -41,9 +39,9 @@ export function TrackList() {
 
   return (
     <>
-      <Box sx={{ mt: '20px', overflowX: 'auto' }}>
+      <Box mt='20px'>
         <TableContainer component={Paper}>
-          <Table>
+          <Table sx={{ width: 1100, overflow: 'auto' }}>
             <TableHead>
               <TableRow>
                 <TableCell sx={headerCellStyles}>Title</TableCell>
