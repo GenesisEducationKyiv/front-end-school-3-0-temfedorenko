@@ -216,7 +216,7 @@ export default function TrackForm({ isCreate = false, handleClose }: { isCreate?
       }
       {isCreateError && <Alert severity='error'>{getErrorMessage(createError)}</Alert>}
       <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
+        <Button onClick={handleClose} data-testid='cancel-button'>Cancel</Button>
         <Button
           type='submit'
           disabled={isCreating}
