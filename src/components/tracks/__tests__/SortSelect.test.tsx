@@ -1,7 +1,7 @@
 import { screen, render, fireEvent } from '@testing-library/react';
 
-import { SORT_URL_PARAM } from '../../../constants';
-import { SortSelect, sortOptions } from '../SortSelect';
+import { SortSelect } from '../SortSelect';
+import { SORT_URL_PARAM, TRACK_SORT_OPTIONS } from '../../../constants';
 import { useTrackFiltersAndSorting } from '../../../hooks/useTrackFiltersAndSorting';
 ///////////////////////////////////////////////////////
 
@@ -61,9 +61,9 @@ describe('SortSelect component', () => {
 
     const allOptions = await screen.findAllByRole('option');
 
-    expect(allOptions).toHaveLength(sortOptions.length);
-    expect(screen.getByText(sortOptions[0].label)).toBeInTheDocument();
-    expect(screen.getByText(sortOptions[1].label)).toBeInTheDocument();
+    expect(allOptions).toHaveLength(TRACK_SORT_OPTIONS.length);
+    expect(screen.getByText(TRACK_SORT_OPTIONS[0].label)).toBeInTheDocument();
+    expect(screen.getByText(TRACK_SORT_OPTIONS[1].label)).toBeInTheDocument();
   });
 
   test('should call setFilters with the correct value when a new option is selected', async () => {
@@ -71,11 +71,11 @@ describe('SortSelect component', () => {
 
     fireEvent.mouseDown(screen.getByRole('combobox'));
 
-    const option = await screen.findByText(sortOptions[1].label);
+    const option = await screen.findByText(TRACK_SORT_OPTIONS[1].label);
 
     fireEvent.click(option);
 
     expect(mockSetFilters).toHaveBeenCalledTimes(1);
-    expect(mockSetFilters).toHaveBeenCalledWith(SORT_URL_PARAM, sortOptions[1].value);
+    expect(mockSetFilters).toHaveBeenCalledWith(SORT_URL_PARAM, TRACK_SORT_OPTIONS[1].value);
   });
 });

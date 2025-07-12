@@ -50,3 +50,8 @@ export interface IGenreOption {
   label: string;
   value: string;
 };
+
+export interface ISortOption {
+  label: string;
+  value: TSortOption;
+}
