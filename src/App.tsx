@@ -14,10 +14,10 @@ function App() {
   return (
     <BrowserRouter>
       <AppHeader />
-      <Box component='main' flexGrow={1}><TracksPage /></Box>
+      <Box px='30px' component='main' flexGrow={1}><TracksPage /></Box>
       <Box component='footer'>
         <ActiveTrack />
-        <Typography mt='30px' align='center' variant='h6'>Developed by Artem Fedorenko | 2025</Typography>
+        <Typography my='30px' align='center' variant='h6' component='p'>Developed by Artem Fedorenko | 2025</Typography>
       </Box>
       <ToastContainer autoClose={3000} position='top-left' />
     </BrowserRouter>

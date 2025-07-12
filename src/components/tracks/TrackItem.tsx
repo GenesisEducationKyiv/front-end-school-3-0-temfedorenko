@@ -14,7 +14,7 @@ import { Fallback } from '../Fallback';
 import { useTracksStore } from '../../store';
 import { selectOpenTrackModal } from '../../selectors';
 import { API_BASE_URL, endpoints } from '../../api/endpoints';
-import defaultCoverImage from '../../assets/images/cover-image.jpg';
+import defaultCoverImage from '../../assets/images/cover-image.webp';
 import { EDIT_TRACK, DELETE_TRACK, UPLOAD_TRACK_FILE, DELETE_TRACK_FILE } from '../../constants';
 
 import type { ITrack } from '../../types/track.types';
@@ -35,10 +35,10 @@ export function TrackItem({ track }: { track: ITrack }) {
         <Box gap='10px' display='flex' alignItems='center'>
           <Box width={50} height={50} flexShrink={0}>
             <Box
-              alt={title}
               width='100%'
               height='100%'
               component='img'
+              alt={`${title} cover image`}
               sx={{ objectFit: 'contain' }}
               src={coverImage || defaultCoverImage}
               onError={({ currentTarget }: { currentTarget: HTMLImageElement }) => {
