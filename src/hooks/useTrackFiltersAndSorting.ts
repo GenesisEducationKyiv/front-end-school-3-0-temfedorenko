@@ -3,8 +3,8 @@ import * as Belt from '@mobily/ts-belt';
 import { useSearchParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 
-import { useTracksStore } from '../store';
-import { selectTotalPages } from '../selectors';
+import { useTracksStore } from '@/store';
+import { selectTotalPages } from '@/selectors';
 
 import {
   PAGE_URL_PARAM,
@@ -12,10 +12,10 @@ import {
   GENRE_URL_PARAM,
   GENRES_QUERY_KEY,
   SEARCH_URL_PARAM,
-} from '../constants';
+} from '@/constants';
 
-import { isValidPageValue, isValidString } from '../types/guards';
-import { isValidGenre, isTSortOption } from '../types/track.guards';
+import { isValidPageValue, isValidString } from '@/types/guards';
+import { isValidGenre, isTSortOption } from '@/types/track.guards';
 ///////////////////////////////////////////////////////
 
 type TUrlParamName = typeof SORT_URL_PARAM | typeof GENRE_URL_PARAM | typeof SEARCH_URL_PARAM | typeof PAGE_URL_PARAM;

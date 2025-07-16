@@ -1,16 +1,16 @@
 import { lazy } from 'react';
 import DialogContentText from '@mui/material/DialogContentText';
 
-import { Fallback } from '../Fallback';
-import { useTracksStore } from '../../store';
-import { useDeleteActions } from '../../hooks/useDeleteActions';
-import { selectTrackModal, selectSelectedTrack, selectCloseTrackModal } from '../../selectors';
-import { EDIT_TRACK, DELETE_TRACK, UPLOAD_TRACK_FILE, DELETE_TRACK_FILE } from '../../constants';
+import { useTracksStore } from '@/store';
+import { Fallback } from '@/components/Fallback';
+import { useDeleteActions } from '@/hooks/useDeleteActions';
+import { selectTrackModal, selectSelectedTrack, selectCloseTrackModal } from '@/selectors';
+import { EDIT_TRACK, DELETE_TRACK, UPLOAD_TRACK_FILE, DELETE_TRACK_FILE } from '@/constants';
 ///////////////////////////////////////////////////////
 
-const TrackForm = lazy(() => import('./TrackForm'));
-const ModalComponent = lazy(() => import('../Modal'));
-const UploadTrackFileForm = lazy(() => import('./UploadTrackFileForm'));
+const ModalComponent = lazy(() => import('@/components/Modal').then(m => ({ default: m.ModalComponent })));
+const TrackForm = lazy(() => import('@/components/tracks/TrackForm').then(m => ({ default: m.TrackForm })));
+const UploadTrackFileForm = lazy(() => import('@/components/tracks/UploadTrackFileForm').then(m => ({ default: m.UploadTrackFileForm })));
 
 export function TrackModals() {
   const trackModal = useTracksStore(selectTrackModal);

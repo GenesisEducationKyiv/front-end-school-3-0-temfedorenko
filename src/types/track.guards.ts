@@ -1,6 +1,6 @@
-import { TRACK_SORT_OPTIONS_MAP } from '../constants';
+import { TRACK_SORT_OPTIONS_MAP } from '@/constants';
 
-import type { TSortOption } from './track.types';
+import type { TSortOption } from '@/types/track.types';
 ///////////////////////////////////////////////////////
 
 export const isTSortOption = (value: string): value is TSortOption => Object.keys(TRACK_SORT_OPTIONS_MAP).includes(value);

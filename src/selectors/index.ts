@@ -1,4 +1,4 @@
-import type { IStore } from '../store';
+import type { IStore } from '@/store';
 ///////////////////////////////////////////////////////
 
 const selectTotalPages = (s: IStore) => s.totalPages;

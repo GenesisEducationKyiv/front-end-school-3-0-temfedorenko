@@ -1,6 +1,6 @@
 import { io, Socket } from 'socket.io-client';
 
-import { BASE_URL } from './api/endpoints';
+import { BASE_URL } from '@/api/endpoints';
 ///////////////////////////////////////////////////////
 
 let socket: Socket | null = null;

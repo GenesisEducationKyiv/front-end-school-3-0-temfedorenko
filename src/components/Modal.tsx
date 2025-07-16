@@ -9,7 +9,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import { getErrorMessage } from '../helpers';
+import { getErrorMessage } from '@/helpers';
 
 import type { JSX } from '@emotion/react/jsx-runtime';
 ///////////////////////////////////////////////////////
@@ -26,7 +26,7 @@ interface IProps {
   disablePortal?: boolean;
 }
 
-export default function ModalComponent({ title, error, isError, children, handleClose, isConfirm, handleConfirm, isLoading, disablePortal }: IProps) {
+export function ModalComponent({ title, error, isError, children, handleClose, isConfirm, handleConfirm, isLoading, disablePortal }: IProps) {
   return (
     <Dialog
       open={true}

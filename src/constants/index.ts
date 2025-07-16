@@ -1,4 +1,5 @@
-import type { ISortOption } from '../types/track.types';
+import type { ISortOption } from '@/types/track.types';
+///////////////////////////////////////////////////////
 
 // track modal types
 export const EDIT_TRACK = 'editTrack';

@@ -1,4 +1,4 @@
-import type { TRACK_SORT_OPTIONS_MAP } from '../constants';
+import type { TRACK_SORT_OPTIONS_MAP } from '@/constants';
 ///////////////////////////////////////////////////////
 
 export type TSortOption = keyof typeof TRACK_SORT_OPTIONS_MAP | '';

@@ -5,8 +5,8 @@ import IconButton from '@mui/material/IconButton';
 import PlayArrow from '@mui/icons-material/PlayArrow';
 import PauseCircle from '@mui/icons-material/PauseCircle';
 
-import { useTracksStore } from '../../store';
-import { selectPlayingTrackId, selectSetPlayingTrackId } from '../../selectors';
+import { useTracksStore } from '@/store';
+import { selectPlayingTrackId, selectSetPlayingTrackId } from '@/selectors';
 
 import type WaveSurfer from 'wavesurfer.js';
 ///////////////////////////////////////////////////////
@@ -21,7 +21,7 @@ const wrapperStyles = {
 
 const playerWrapperStyles = { width: '100%', cursor: 'pointer' };
 
-export default function Audio({ id, url }: { id: string; url: string }) {
+export function Audio({ id, url }: { id: string; url: string }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [wavesurfer, setWavesurfer] = useState<WaveSurfer | null>(null);
 

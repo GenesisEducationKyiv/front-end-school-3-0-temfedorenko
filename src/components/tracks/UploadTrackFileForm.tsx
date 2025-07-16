@@ -12,11 +12,11 @@ import DialogActions from '@mui/material/DialogActions';
 import FormHelperText from '@mui/material/FormHelperText';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import { useTracksStore } from '../../store';
-import { selectSelectedTrack } from '../../selectors';
-import { uploadTrackFileRequest } from '../../api/tracks';
-import { showToast, getErrorMessage } from '../../helpers';
-import { FIELD_AUDIO_FILE, TRACKS_QUERY_KEY } from '../../constants';
+import { useTracksStore } from '@/store';
+import { selectSelectedTrack } from '@/selectors';
+import { uploadTrackFileRequest } from '@/api/tracks';
+import { showToast, getErrorMessage } from '@/helpers';
+import { FIELD_AUDIO_FILE, TRACKS_QUERY_KEY } from '@/constants';
 ///////////////////////////////////////////////////////
 
 const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024; // 10MB
@@ -63,7 +63,7 @@ const VisuallyHiddenInput = styled('input')({
   clipPath: 'inset(50%)',
 });
 
-export default function UploadTrackFileForm({ handleClose }: { handleClose: () => void }) {
+export function UploadTrackFileForm({ handleClose }: { handleClose: () => void }) {
   const selectedTrack = useTracksStore(selectSelectedTrack);
 
   const queryClient = useQueryClient();

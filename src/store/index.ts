@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 
-import { TRACK_MODAL_TYPES } from '../constants';
+import { TRACK_MODAL_TYPES } from '@/constants';
 
-import type { ITrack } from '../types/track.types';
+import type { ITrack } from '@/types/track.types';
 ///////////////////////////////////////////////////////
 
 type TTrackModalType = keyof typeof TRACK_MODAL_TYPES;
