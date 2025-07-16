@@ -2,10 +2,10 @@ import { createRoot } from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { CssBaseline, Experimental_CssVarsProvider } from '@mui/material';
 
-import './index.css';
+import '@/index.css';
 
-import App from './App';
-import theme from './theme';
+import App from '@/App';
+import theme from '@/theme';
 ///////////////////////////////////////////////////////
 
 const queryClient = new QueryClient();

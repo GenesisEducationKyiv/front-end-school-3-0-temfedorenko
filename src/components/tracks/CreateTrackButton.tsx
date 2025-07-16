@@ -3,13 +3,13 @@ import { lazy, Suspense } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
-import { useTracksStore } from '../../store';
-import { CREATE_TRACK } from '../../constants';
-import { selectTrackModal, selectOpenTrackModal, selectCloseTrackModal } from '../../selectors';
+import { useTracksStore } from '@/store';
+import { CREATE_TRACK } from '@/constants';
+import { selectTrackModal, selectOpenTrackModal, selectCloseTrackModal } from '@/selectors';
 //////////////////////////////////////////////////
 
-const TrackForm = lazy(() => import('./TrackForm'));
-const ModalComponent = lazy(() => import('../Modal'));
+const ModalComponent = lazy(() => import('@/components/Modal').then(m => ({ default: m.ModalComponent })));
+const TrackForm = lazy(() => import('@/components/tracks/TrackForm').then(m => ({ default: m.TrackForm })));
 
 export function CreateTrackButton() {
   const trackModal = useTracksStore(selectTrackModal);

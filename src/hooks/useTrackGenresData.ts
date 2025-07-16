@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { GENRES_QUERY_KEY } from '../constants';
-import { getGenresRequest } from '../api/tracks';
+import { GENRES_QUERY_KEY } from '@/constants';
+import { getGenresRequest } from '@/api/tracks';
 ///////////////////////////////////////////////////////
 
 export const useTrackGenresData = () => {

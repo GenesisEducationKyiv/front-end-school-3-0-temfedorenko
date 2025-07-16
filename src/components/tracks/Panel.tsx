@@ -1,9 +1,9 @@
 import Stack from '@mui/material/Stack';
 
-import { SortSelect } from './SortSelect';
-import { SearchInput } from './SearchInput';
-import { GenreFilter } from './GenreFilter';
-import { CreateTrackButton } from './CreateTrackButton';
+import { SortSelect } from '@/components/tracks/SortSelect';
+import { SearchInput } from '@/components/tracks/SearchInput';
+import { GenreFilter } from '@/components/tracks/GenreFilter';
+import { CreateTrackButton } from '@/components/tracks/CreateTrackButton';
 ///////////////////////////////////////////////////////
 
 export function Panel() {

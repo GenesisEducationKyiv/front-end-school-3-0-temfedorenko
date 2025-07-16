@@ -2,8 +2,8 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { SelectChangeEvent } from '@mui/material/Select';
 
-import { TRACK_SORT_OPTIONS } from '../constants';
-import { SelectComponent } from '../components/Select';
+import { TRACK_SORT_OPTIONS } from '@/constants';
+import { SelectComponent } from '@/components/Select';
 
 const meta: Meta<typeof SelectComponent> = {
   title: 'Mui/Select',

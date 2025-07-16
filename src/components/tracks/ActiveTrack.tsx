@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import AudiotrackIcon from '@mui/icons-material/Audiotrack';
 
-import { getSocket, disconnectSocket } from '../../socket';
+import { getSocket, disconnectSocket } from '@/socket';
 ///////////////////////////////////////////////////////
 
 export function ActiveTrack() {

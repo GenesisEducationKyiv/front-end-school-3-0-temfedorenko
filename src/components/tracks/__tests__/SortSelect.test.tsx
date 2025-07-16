@@ -1,13 +1,13 @@
 import { screen, render, fireEvent } from '@testing-library/react';
 
-import { SortSelect } from '../SortSelect';
-import { SORT_URL_PARAM, TRACK_SORT_OPTIONS } from '../../../constants';
-import { useTrackFiltersAndSorting } from '../../../hooks/useTrackFiltersAndSorting';
+import { SortSelect } from '@/components/tracks/SortSelect';
+import { SORT_URL_PARAM, TRACK_SORT_OPTIONS } from '@/constants';
+import { useTrackFiltersAndSorting } from '@/hooks/useTrackFiltersAndSorting';
 
-import type { TSortOption } from '../../../types/track.types';
+import type { TSortOption } from '@/types/track.types';
 ///////////////////////////////////////////////////////
 
-vi.mock('../../../hooks/useTrackFiltersAndSorting');
+vi.mock('@/hooks/useTrackFiltersAndSorting');
 
 describe('SortSelect component', () => {
   const mockSetFilters = vi.fn();

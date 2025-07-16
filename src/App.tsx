@@ -3,11 +3,11 @@ import Typography from '@mui/material/Typography';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter } from 'react-router-dom';
 
-import './App.css';
+import '@/App.css';
 
-import { TracksPage } from './features/tracks';
-import { AppHeader } from './components/AppHeader';
-import { ActiveTrack } from './components/tracks/ActiveTrack';
+import { TracksPage } from '@/features/tracks';
+import { AppHeader } from '@/components/AppHeader';
+import { ActiveTrack } from '@/components/tracks/ActiveTrack';
 ///////////////////////////////////////////////////////
 
 function App() {

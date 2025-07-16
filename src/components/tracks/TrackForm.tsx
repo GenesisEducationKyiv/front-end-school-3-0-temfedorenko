@@ -10,12 +10,12 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { getIn, useFormik, type FormikErrors, type FormikTouched } from 'formik';
 
-import { useTracksStore } from '../../store';
-import { selectSelectedTrack } from '../../selectors';
-import { showToast, getErrorMessage } from '../../helpers';
-import { useTrackGenresData } from '../../hooks/useTrackGenresData';
-import { createTrackRequest, updateTrackRequest } from '../../api/tracks';
-import { useTrackFiltersAndSorting } from '../../hooks/useTrackFiltersAndSorting';
+import { useTracksStore } from '@/store';
+import { selectSelectedTrack } from '@/selectors';
+import { showToast, getErrorMessage } from '@/helpers';
+import { useTrackGenresData } from '@/hooks/useTrackGenresData';
+import { createTrackRequest, updateTrackRequest } from '@/api/tracks';
+import { useTrackFiltersAndSorting } from '@/hooks/useTrackFiltersAndSorting';
 import {
   FIELD_ALBUM,
   FIELD_TITLE,
@@ -23,7 +23,7 @@ import {
   FIELD_ARTIST,
   TRACKS_QUERY_KEY,
   FIELD_COVER_IMAGE,
-} from '../../constants';
+} from '@/constants';
 //////////////////////////////////////////////////
 
 const validationSchema = yup.object().shape({
@@ -102,7 +102,7 @@ const getTextInputStyles = (height?: number) => ({
   '& .MuiOutlinedInput-root': { height },
 });
 
-export default function TrackForm({ isCreate = false, handleClose }: { isCreate?: boolean; handleClose: () => void }) {
+export function TrackForm({ isCreate = false, handleClose }: { isCreate?: boolean; handleClose: () => void }) {
   const queryClient = useQueryClient();
 
   const selectedTrack = useTracksStore(selectSelectedTrack);

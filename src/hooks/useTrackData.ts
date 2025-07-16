@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-import { useTracksStore } from '../store';
-import { getTracksRequest } from '../api/tracks';
-import { selectSetTotalPages } from '../selectors';
-import { useTrackFiltersAndSorting } from './useTrackFiltersAndSorting';
-import { PAGE_URL_PARAM, TRACKS_QUERY_KEY, TRACK_SORT_OPTIONS_MAP } from '../constants';
+import { useTracksStore } from '@/store';
+import { getTracksRequest } from '@/api/tracks';
+import { selectSetTotalPages } from '@/selectors';
+import { useTrackFiltersAndSorting } from '@/hooks/useTrackFiltersAndSorting';
+import { PAGE_URL_PARAM, TRACKS_QUERY_KEY, TRACK_SORT_OPTIONS_MAP } from '@/constants';
 
-import type { ITracksResponse } from '../types/track.types';
+import type { ITracksResponse } from '@/types/track.types';
 ///////////////////////////////////////////////////////
 
 export const useTrackData = () => {

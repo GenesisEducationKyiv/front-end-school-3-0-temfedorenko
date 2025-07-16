@@ -9,10 +9,10 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableContainer from '@mui/material/TableContainer';
 
-import { TrackItem } from './TrackItem';
-import { TrackModals } from './TrackModals';
-import { getErrorMessage } from '../../helpers';
-import { useTrackData } from '../../hooks/useTrackData';
+import { getErrorMessage } from '@/helpers';
+import { useTrackData } from '@/hooks/useTrackData';
+import { TrackItem } from '@/components/tracks/TrackItem';
+import { TrackModals } from '@/components/tracks/TrackModals';
 ///////////////////////////////////////////////////////
 
 const headerCellStyles = {

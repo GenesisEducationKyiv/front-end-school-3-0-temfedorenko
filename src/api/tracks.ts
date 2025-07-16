@@ -1,24 +1,24 @@
 import z from 'zod';
 
-import { api } from '.';
+import { api } from '@/api';
 
-import { endpoints } from './endpoints';
-import { TRACKS_QUERY_KEY } from '../constants';
-import { saveParseWithError } from '../helpers/zod';
+import { endpoints } from '@/api/endpoints';
+import { TRACKS_QUERY_KEY } from '@/constants';
+import { saveParseWithError } from '@/helpers/zod';
 import {
   trackSchema,
   genresSchema,
   tracksResponseSchema,
   uploadTrackFileSchema,
   deleteTrackFileSchema,
-} from '../schemas';
+} from '@/schemas';
 
 import type { QueryFunctionContext } from '@tanstack/react-query';
 import type {
   ITracksQuery,
   ICreateTrackPayload,
   IUpdateTrackPayload,
-} from '../types/track.types';
+} from '@/types/track.types';
 ///////////////////////////////////////////////////////
 
 const getGenresRequest = async (): Promise<z.infer<typeof genresSchema>> => {

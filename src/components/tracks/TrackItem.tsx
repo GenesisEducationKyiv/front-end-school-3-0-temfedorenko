@@ -10,17 +10,17 @@ import Delete from '@mui/icons-material/Delete';
 import AudioFile from '@mui/icons-material/AudioFile';
 import HighlightOff from '@mui/icons-material/HighlightOff';
 
-import { Fallback } from '../Fallback';
-import { useTracksStore } from '../../store';
-import { selectOpenTrackModal } from '../../selectors';
-import { API_BASE_URL, endpoints } from '../../api/endpoints';
-import defaultCoverImage from '../../assets/images/cover-image.webp';
-import { EDIT_TRACK, DELETE_TRACK, UPLOAD_TRACK_FILE, DELETE_TRACK_FILE } from '../../constants';
+import { useTracksStore } from '@/store';
+import { Fallback } from '@/components/Fallback';
+import { selectOpenTrackModal } from '@/selectors';
+import { API_BASE_URL, endpoints } from '@/api/endpoints';
+import defaultCoverImage from '@/assets/images/cover-image.webp';
+import { EDIT_TRACK, DELETE_TRACK, UPLOAD_TRACK_FILE, DELETE_TRACK_FILE } from '@/constants';
 
-import type { ITrack } from '../../types/track.types';
+import type { ITrack } from '@/types/track.types';
 ///////////////////////////////////////////////////////
 
-const Audio = lazy(() => import('./Audio'));
+const Audio = lazy(() => import('@/components/tracks/Audio').then(m => ({ default: m.Audio })));
 
 export function TrackItem({ track }: { track: ITrack }) {
   const { id, title, artist, album, genres, audioFile, coverImage } = track;

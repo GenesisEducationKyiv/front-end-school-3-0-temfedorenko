@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { TextFieldComponent } from '../components/TextInput';
+import { TextFieldComponent } from '@/components/TextInput';
 
 const meta: Meta<typeof TextFieldComponent> = {
   title: 'Mui/TextField',

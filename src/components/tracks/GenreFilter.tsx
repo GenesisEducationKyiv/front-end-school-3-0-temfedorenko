@@ -1,9 +1,9 @@
-import { SelectComponent } from '../Select';
-import { useTrackGenresData } from '../../hooks/useTrackGenresData';
-import { useTrackFiltersAndSorting } from '../../hooks/useTrackFiltersAndSorting';
+import { SelectComponent } from '@/components/Select';
+import { useTrackGenresData } from '@/hooks/useTrackGenresData';
+import { useTrackFiltersAndSorting } from '@/hooks/useTrackFiltersAndSorting';
 
-import { GENRE_URL_PARAM } from '../../constants';
-import { createGenreOptions } from '../../helpers';
+import { GENRE_URL_PARAM } from '@/constants';
+import { createGenreOptions } from '@/helpers';
 
 import type { SelectChangeEvent } from '@mui/material/Select';
 //////////////////////////////////////////////////

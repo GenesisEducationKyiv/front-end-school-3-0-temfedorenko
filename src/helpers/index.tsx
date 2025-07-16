@@ -3,8 +3,8 @@ import { toast, type TypeOptions } from 'react-toastify';
 
 import { isAxiosError } from 'axios';
 
-import { isValidString } from '../types/guards';
-import type { IGenreOption } from '../types/track.types';
+import { isValidString } from '@/types/guards';
+import type { IGenreOption } from '@/types/track.types';
 ///////////////////////////////////////////////////////
 
 interface IErrorResponseData {

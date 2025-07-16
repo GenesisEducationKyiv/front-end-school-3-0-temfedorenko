@@ -2,10 +2,10 @@ import Box from '@mui/material/Box';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
 
-import { useTracksStore } from '../../store';
-import { PAGE_URL_PARAM } from '../../constants';
-import { selectTotalPages } from '../../selectors';
-import { useTrackFiltersAndSorting } from '../../hooks/useTrackFiltersAndSorting';
+import { useTracksStore } from '@/store';
+import { PAGE_URL_PARAM } from '@/constants';
+import { selectTotalPages } from '@/selectors';
+import { useTrackFiltersAndSorting } from '@/hooks/useTrackFiltersAndSorting';
 //////////////////////////////////////////////////////
 
 export function PaginationComponent() {

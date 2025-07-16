@@ -1,4 +1,4 @@
-import { setDebounce, createGenreOptions } from '../';
+import { setDebounce, createGenreOptions } from '@/helpers';
 ///////////////////////////////////////////////////////
 
 describe('createGenreOptions', () => {

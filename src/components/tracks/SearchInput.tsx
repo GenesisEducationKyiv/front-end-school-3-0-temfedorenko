@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react';
 
-import { setDebounce } from '../../helpers';
-import { TextFieldComponent } from '../TextInput';
-import { SEARCH_URL_PARAM } from '../../constants';
-import { useTrackFiltersAndSorting } from '../../hooks/useTrackFiltersAndSorting';
+import { setDebounce } from '@/helpers';
+import { SEARCH_URL_PARAM } from '@/constants';
+import { TextFieldComponent } from '@/components/TextInput';
+import { useTrackFiltersAndSorting } from '@/hooks/useTrackFiltersAndSorting';
 // //////////////////////////////////////////////////
 
 export function SearchInput() {
