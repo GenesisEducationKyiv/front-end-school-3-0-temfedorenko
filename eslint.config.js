@@ -1,7 +1,8 @@
 import js from '@eslint/js';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
-import pluginZod from "eslint-plugin-zod";;
+import pluginZod from 'eslint-plugin-zod';
+import storybook from 'eslint-plugin-storybook';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh'
 
@@ -33,4 +34,5 @@ export default tseslint.config(
       ],
     },
   },
+  storybook.configs["flat/recommended"],
 );

@@ -1,12 +1,15 @@
-import { createTheme } from '@mui/material/styles';
+import { experimental_extendTheme } from '@mui/material/styles';
 ///////////////////////////////////////////////////////
 
-let theme = createTheme({});
-
-theme = createTheme({
-  palette: {
-    primary: {
-      main: '#fff',
+const theme = experimental_extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        mode: 'light',
+        primary: {
+          main: '#fff',
+        },
+      },
     },
   },
   components: {
@@ -21,13 +24,11 @@ theme = createTheme({
           borderColor: '#222',
           padding: '5px 20px',
           borderStyle: 'solid',
-          borderRadius: '100px',
+          borderRadius: '16px',
           textTransform: 'none',
-          [theme.breakpoints.up('md')]: {
-            '&:hover': {
-              color: 'black',
-              background: 'white',
-            },
+          '&:hover': {
+            color: 'black',
+            background: 'white',
           },
         },
       },
@@ -61,6 +62,12 @@ theme = createTheme({
         },
       },
     },
+  },
+  shape: {
+    borderRadius: 10,
+  },
+  typography: {
+    fontFamily: 'Roboto, sans-serif',
   },
 });
 
